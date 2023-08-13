@@ -25,13 +25,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<AuthEventRegisterWithGoogle>((event, emit) async {
-      final supabase = Supabase.instance.client;
+      // final supabase = Supabase.instance.client;
       emit(AuthStateIsRegisteringwithGoogle());
       final user = await repo.signUpWithGoogle();
       user.fold((l) {
         emit(AuthStateRegistrationError());
       }, (r) {
-        emit(AuthStateUserRegistered(user: supabase.auth.currentUser!));
+        emit(AuthStateUserRegistered(user: r!));
       });
     });
   }

@@ -13,7 +13,7 @@ class AuthRepository {
         fullName: fullName, email: email, password: password);
   }
 
-  EitherAuthResponse signUpWithGoogle() {
+  EitherUser signUpWithGoogle() {
     return provider.signUpWithGoogle();
   }
 }

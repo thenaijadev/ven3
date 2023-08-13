@@ -39,7 +39,7 @@ class AuthProviderImpl implements AuthProvider {
   }
 
   @override
-  EitherAuthResponse signUpWithGoogle() async {
+  EitherUser signUpWithGoogle() async {
     try {
       final supabase = Supabase.instance.client;
       // Just a random string
@@ -100,7 +100,10 @@ class AuthProviderImpl implements AuthProvider {
         idToken: idToken,
         nonce: rawNonce,
       );
-      return right(res);
+
+      final User? user = res.user;
+
+      return right(user);
     } on AuthException catch (e) {
       return left(e.message);
     } catch (e) {

@@ -23,7 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormFieldState> key_2 = GlobalKey<FormFieldState>();
 
   final GlobalKey<FormFieldState> key_3 = GlobalKey<FormFieldState>();
-  bool obscureText = false;
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
