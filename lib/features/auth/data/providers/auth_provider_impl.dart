@@ -102,12 +102,59 @@ class AuthProviderImpl implements AuthProvider {
       );
 
       final User? user = res.user;
-
+      print(user);
       return right(user);
     } on AuthException catch (e) {
       return left(e.message);
     } catch (e) {
       return left(e.toString());
     }
+  }
+
+  @override
+  EitherUser login({required String email, required String password}) async {
+    try {
+      final supabase = Supabase.instance.client;
+      final AuthResponse res = await supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      // final Session? session = res.session;
+      final User? user = res.user;
+      print(user);
+      return right(user);
+    } on AuthException catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  EitherUser signInWithGoogle() async {
+    try {
+      final supabase = Supabase.instance.client;
+
+      // Perform web based OAuth login
+      await supabase.auth.signInWithOAuth(
+        Provider.github,
+        redirectTo: kIsWeb ? null : 'io.supabase.flutter://callback',
+      );
+
+      final user = supabase.auth.currentUser;
+      return right(user);
+    } on AuthException catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+
+// Listen to auth state changes in order to detect when ther OAuth login is complete.
+    // supabase.auth.onAuthStateChange.listen((data) {
+    //   final AuthChangeEvent event = data.event;
+    //   if (event == AuthChangeEvent.signedIn) {
+    //     // Do something when user sign in
+    //   }
+    // });
   }
 }

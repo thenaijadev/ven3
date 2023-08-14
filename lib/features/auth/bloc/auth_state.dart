@@ -14,12 +14,16 @@ class AuthStateUserRegistered extends AuthState {
   final User user;
 }
 
-class AuthStateSignedUpWithGoogle extends AuthState {}
-
 class AuthStateRegistrationError extends AuthState {}
 
 class AuthStateIsloggingIn extends AuthState {}
 
-class AuthStateisLoggedIn extends AuthState {}
+class AuthStateisLoggedIn extends AuthState {
+  AuthStateisLoggedIn({required this.user});
+  final User user;
+}
 
-class AuthStateLogInError extends AuthState {}
+class AuthStateLogInError extends AuthState {
+  AuthStateLogInError({required this.message});
+  final String message;
+}

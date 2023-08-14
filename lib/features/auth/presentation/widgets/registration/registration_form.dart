@@ -77,7 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               // if (_formKey.currentState!.validate()) {}
                               final String fullName = key_1.currentState?.value;
                               final String email = key_2.currentState?.value;
-                              final String password = key_2.currentState?.value;
+                              final String password = key_3.currentState?.value;
                               authBloc.add(AuthEventRegister(
                                   email: email,
                                   password: password,
@@ -90,7 +90,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               // if (_formKey.currentState!.validate()) {}
                               final String fullName = key_1.currentState?.value;
                               final String email = key_2.currentState?.value;
-                              final String password = key_2.currentState?.value;
+                              final String password = key_3.currentState?.value;
                               authBloc.add(AuthEventRegister(
                                   email: email,
                                   password: password,

@@ -24,6 +24,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     });
 
+    on<AuthEventLogin>((event, emit) async {
+      final String email = event.email;
+
+      final String password = event.password;
+      emit(AuthStateIsloggingIn());
+      final user = await repo.login(
+        email: email,
+        password: password,
+      );
+      user.fold((l) {
+        emit(AuthStateLogInError(message: l));
+      }, (r) {
+        emit(AuthStateisLoggedIn(user: r!));
+        print(user);
+      });
+    });
+
     on<AuthEventRegisterWithGoogle>((event, emit) async {
       // final supabase = Supabase.instance.client;
       emit(AuthStateIsRegisteringwithGoogle());

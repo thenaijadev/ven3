@@ -16,4 +16,11 @@ class AuthRepository {
   EitherUser signUpWithGoogle() {
     return provider.signUpWithGoogle();
   }
+
+  EitherUser login({
+    required String email,
+    required String password,
+  }) {
+    return provider.login(email: email, password: password);
+  }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
+import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/bloc/auth_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_option_label.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/oauth_button.dart';
@@ -21,6 +24,7 @@ class _LoginFormState extends State<LoginForm> {
   bool obscureText = false;
   @override
   Widget build(BuildContext context) {
+    final authBloc = context.read<AuthBloc>();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 40),
@@ -54,9 +58,38 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 onChanged: (val) {},
                 textFieldkey: key_3),
-            AuthButton(
-              label: "SIGN UP",
-              onTap: () {},
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return state is AuthStateIsloggingIn
+                    ? const LoadingWidget()
+                    : state is AuthStateisLoggedIn
+                        ? AuthButton(
+                            label: "SIGN UP",
+                            onTap: () {
+                              // if (_formKey.currentState!.validate()) {}
+                              final String email = key_2.currentState?.value;
+                              final String password = key_3.currentState?.value;
+                              authBloc.add(AuthEventLogin(
+                                email: email,
+                                password: password,
+                              ));
+                            },
+                          )
+                        : AuthButton(
+                            label: "SIGN UP",
+                            onTap: () {
+                              // if (_formKey.currentState!.validate()) {}
+
+                              final String email = key_2.currentState?.value;
+                              final String password = key_3.currentState?.value;
+                              authBloc.add(AuthEventLogin(
+                                email: email,
+                                password: password,
+                              ));
+                            },
+                          );
+              },
             ),
             SignInSignUpOptionText(
                 labelColor: Colors.black,
@@ -77,10 +110,22 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(
               height: 20,
             ),
-            OAuthButton(
-              image: "google",
-              label: "Google",
-              onTap: () {},
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthStateUserRegistered) {}
+              },
+              builder: (context, state) {
+                return state is AuthStateIsRegisteringwithGoogle
+                    ? const Flexible(child: LoadingWidget())
+                    : OAuthButton(
+                        image: "google",
+                        label: "Google",
+                        onTap: () async {
+                          authBloc.add(AuthEventRegisterWithGoogle());
+                        },
+                        verticalPadding: 0,
+                      );
+              },
             )
           ],
         ),
