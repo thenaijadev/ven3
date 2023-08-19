@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
+import 'package:the_food_hub_nsk_nig/core/widgets/snackbar.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/bloc/auth_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
@@ -66,37 +67,29 @@ class _SignUpFormState extends State<SignUpForm> {
                 onChanged: (val) {},
                 textFieldkey: key_3),
             BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {},
+              listener: (context, state) {
+                if (state is AuthStateUserRegistered) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                } else if (state is AuthStateRegistrationError) {
+                  InfoSnackBar.showErrorSnackBar(context, state.error);
+                }
+              },
               builder: (context, state) {
                 return state is AuthStateIsRegistering
                     ? const LoadingWidget()
-                    : state is AuthStateUserRegistered
-                        ? AuthButton(
-                            label: "SIGN UP",
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {}
-                              final String fullName = key_1.currentState?.value;
-                              final String email = key_2.currentState?.value;
-                              final String password = key_3.currentState?.value;
-                              authBloc.add(AuthEventRegister(
-                                  email: email,
-                                  password: password,
-                                  fullName: fullName));
-                            },
-                          )
-                        : AuthButton(
-                            label: "SIGN UP",
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {}
-                              final String fullName = key_1.currentState?.value;
-                              final String email = key_2.currentState?.value;
-                              final String password = key_3.currentState?.value;
-                              authBloc.add(AuthEventRegister(
-                                  email: email,
-                                  password: password,
-                                  fullName: fullName));
-                            },
-                          );
+                    : AuthButton(
+                        label: "SIGN UP",
+                        onTap: () {
+                          // if (_formKey.currentState!.validate()) {}
+                          final String fullName = key_1.currentState?.value;
+                          final String email = key_2.currentState?.value;
+                          final String password = key_3.currentState?.value;
+                          authBloc.add(AuthEventRegister(
+                              email: email,
+                              password: password,
+                              fullName: fullName));
+                        },
+                      );
               },
             ),
             SignInSignUpOptionText(
@@ -120,7 +113,11 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state is AuthStateUserRegistered) {}
+                if (state is AuthStateUserRegistered) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                } else if (state is AuthStateRegistrationError) {
+                  InfoSnackBar.showErrorSnackBar(context, state.error);
+                }
               },
               builder: (context, state) {
                 return state is AuthStateIsRegisteringwithGoogle

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
+import 'package:the_food_hub_nsk_nig/core/widgets/snackbar.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/bloc/auth_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
@@ -59,36 +61,28 @@ class _LoginFormState extends State<LoginForm> {
                 onChanged: (val) {},
                 textFieldkey: key_3),
             BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {},
+              listener: (context, state) {
+                if (state is AuthStateisLoggedIn) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                } else if (state is AuthStateLogInError) {
+                  InfoSnackBar.showErrorSnackBar(context, state.error);
+                }
+              },
               builder: (context, state) {
                 return state is AuthStateIsloggingIn
                     ? const LoadingWidget()
-                    : state is AuthStateisLoggedIn
-                        ? AuthButton(
-                            label: "SIGN UP",
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {}
-                              final String email = key_2.currentState?.value;
-                              final String password = key_3.currentState?.value;
-                              authBloc.add(AuthEventLogin(
-                                email: email,
-                                password: password,
-                              ));
-                            },
-                          )
-                        : AuthButton(
-                            label: "SIGN UP",
-                            onTap: () {
-                              // if (_formKey.currentState!.validate()) {}
-
-                              final String email = key_2.currentState?.value;
-                              final String password = key_3.currentState?.value;
-                              authBloc.add(AuthEventLogin(
-                                email: email,
-                                password: password,
-                              ));
-                            },
-                          );
+                    : AuthButton(
+                        label: "SIGN UP",
+                        onTap: () {
+                          // if (_formKey.currentState!.validate()) {}
+                          final String email = key_2.currentState?.value;
+                          final String password = key_3.currentState?.value;
+                          authBloc.add(AuthEventLogin(
+                            email: email,
+                            password: password,
+                          ));
+                        },
+                      );
               },
             ),
             SignInSignUpOptionText(
@@ -112,7 +106,11 @@ class _LoginFormState extends State<LoginForm> {
             ),
             BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
-                if (state is AuthStateUserRegistered) {}
+                if (state is AuthStateUserRegistered) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                } else if (state is AuthStateRegistrationError) {
+                  InfoSnackBar.showErrorSnackBar(context, state.error);
+                }
               },
               builder: (context, state) {
                 return state is AuthStateIsRegisteringwithGoogle

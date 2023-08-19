@@ -14,7 +14,10 @@ class AuthStateUserRegistered extends AuthState {
   final User user;
 }
 
-class AuthStateRegistrationError extends AuthState {}
+class AuthStateRegistrationError extends AuthState {
+  AuthStateRegistrationError({required this.error});
+  final String error;
+}
 
 class AuthStateIsloggingIn extends AuthState {}
 
@@ -24,6 +27,6 @@ class AuthStateisLoggedIn extends AuthState {
 }
 
 class AuthStateLogInError extends AuthState {
-  AuthStateLogInError({required this.message});
-  final String message;
+  AuthStateLogInError({required this.error});
+  final String error;
 }

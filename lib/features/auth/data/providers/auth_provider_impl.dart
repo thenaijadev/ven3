@@ -27,6 +27,7 @@ class AuthProviderImpl implements AuthProvider {
 
       return right(user);
     } on AuthException catch (e) {
+      print(e.message);
       return left(e.message);
     } catch (e) {
       return left(e.toString());
@@ -102,7 +103,6 @@ class AuthProviderImpl implements AuthProvider {
       );
 
       final User? user = res.user;
-      print(user);
       return right(user);
     } on AuthException catch (e) {
       return left(e.message);
@@ -121,7 +121,6 @@ class AuthProviderImpl implements AuthProvider {
       );
       // final Session? session = res.session;
       final User? user = res.user;
-      print(user);
       return right(user);
     } on AuthException catch (e) {
       return left(e.message);

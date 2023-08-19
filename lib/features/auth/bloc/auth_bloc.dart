@@ -18,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final user = await repo.signUpWithEmailAndPassword(
           email: email, password: password, fullName: fullName);
       user.fold((l) {
-        emit(AuthStateRegistrationError());
+        emit(AuthStateRegistrationError(error: l));
       }, (r) {
         emit(AuthStateUserRegistered(user: r!));
       });
@@ -34,10 +34,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: password,
       );
       user.fold((l) {
-        emit(AuthStateLogInError(message: l));
+        emit(AuthStateLogInError(error: l));
       }, (r) {
         emit(AuthStateisLoggedIn(user: r!));
-        print(user);
       });
     });
 
@@ -46,7 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthStateIsRegisteringwithGoogle());
       final user = await repo.signUpWithGoogle();
       user.fold((l) {
-        emit(AuthStateRegistrationError());
+        emit(AuthStateRegistrationError(error: l));
       }, (r) {
         emit(AuthStateUserRegistered(user: r!));
       });
