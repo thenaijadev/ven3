@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
+import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/bloc/auth_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_option_label.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/oauth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/registration/sign_in_button.dart';
@@ -10,6 +13,7 @@ class SignInOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authBloc = context.read<AuthBloc>();
     return Column(
       children: [
         const AuthOptionLabel(),
@@ -18,10 +22,23 @@ class SignInOptions extends StatelessWidget {
         ),
         Row(
           children: [
-            OAuthButton(
-              onTap: () {},
-              image: "google",
-              label: "Google",
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthStateUserRegistered) {
+                  Navigator.pushReplacementNamed(context, Routes.home);
+                }
+              },
+              builder: (context, state) {
+                return state is AuthStateIsRegistering
+                    ? const LoadingWidget()
+                    : OAuthButton(
+                        onTap: () {
+                          authBloc.add(AuthEventRegisterWithGoogle());
+                        },
+                        image: "google",
+                        label: "Google",
+                      );
+              },
             ),
           ],
         ),

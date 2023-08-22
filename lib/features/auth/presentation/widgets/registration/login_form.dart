@@ -91,7 +91,7 @@ class _LoginFormState extends State<LoginForm> {
                 label: "Don't have an account?",
                 alternative: "Sign Up",
                 onAlternative: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, Routes.registration);
                 }),
             const SizedBox(
               height: 20,
