@@ -6,41 +6,15 @@ import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/primary_button.dart';
 
 class FoodPageView extends StatefulWidget {
-  const FoodPageView({super.key});
-
+  const FoodPageView(
+      {super.key, required this.images, required this.optionLabels});
+  final List<String> images;
+  final List<String> optionLabels;
   @override
   State<FoodPageView> createState() => _FoodPageViewState();
 }
 
-late Image image1;
-late Image image2;
-late Image image3;
-
 class _FoodPageViewState extends State<FoodPageView> {
-  @override
-  void initState() {
-    image1 = Image.asset("assets/images/swallow.jpg");
-    image2 = Image.asset("assets/images/rice.jpg");
-    image3 = Image.asset("assets/images/pasta.jpg");
-
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    precacheImage(image1.image, context);
-    precacheImage(image2.image, context);
-    precacheImage(image3.image, context);
-
-    super.didChangeDependencies();
-  }
-
-  List<String> images = [
-    "assets/images/swallow.jpg",
-    "assets/images/rice.jpg",
-    "assets/images/pasta.jpg"
-  ];
-  List<String> foods = ["Swallow", "Rice", "Pasta"];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -55,7 +29,7 @@ class _FoodPageViewState extends State<FoodPageView> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  images[currentIndex],
+                  widget.images[currentIndex],
                 ),
               ),
             ),
@@ -75,7 +49,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                 currentIndex = value;
               });
             },
-            itemCount: images.length,
+            itemCount: widget.images.length,
             itemBuilder: (context, index) {
               return FractionallySizedBox(
                 widthFactor: 0.8,
@@ -85,7 +59,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
-                        images[index],
+                        widget.images[index],
                       ),
                     ),
                   ),
@@ -104,7 +78,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                   color: Colors.white,
                 ),
                 TextWidget(
-                  text: foods[currentIndex],
+                  text: widget.optionLabels[currentIndex],
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                   color: AppColors.orange,

@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:the_food_hub_nsk_nig/features/home/presentation/pages/food_page_view.dart';
+import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/food_page_view.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<String> images = [
+    "assets/images/swallow.jpg",
+    "assets/images/rice.jpg",
+    "assets/images/pasta.jpg"
+  ];
+  List<String> foods = ["Swallow", "Rice", "Pasta"];
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: FoodPageView(),
+    return Scaffold(
+      body: FoodPageView(images: images, optionLabels: foods),
     );
   }
 }
