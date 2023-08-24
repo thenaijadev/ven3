@@ -14,9 +14,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         final items = state.items;
         items.add(event.item);
         emit(CartStateItemAdded(items: items));
-      } else {
-        final List<FoodTypeItem> items = [];
-        items.add(event.item);
+      }
+    });
+
+    on<CartEventRemoveCartItem>((event, emit) {
+      final state = this.state;
+      if (state is CartStateItemAdded) {
+        final items = state.items;
+        items.remove(event.item);
         emit(CartStateItemAdded(items: items));
       }
     });
