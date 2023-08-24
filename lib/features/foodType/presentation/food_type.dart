@@ -40,7 +40,7 @@ class FoodTypeScreen extends StatelessWidget {
     }
     return Scaffold(
         body: FoodPageView(
-      navigate: (p0, p1) {},
+      navigate: (p1) {},
       category: category,
     ));
   }

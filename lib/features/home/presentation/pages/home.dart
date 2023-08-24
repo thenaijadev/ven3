@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     FoodCategory(name: "Pasta", image: "assets/images/pasta.jpg"),
   ];
 
-  void navigate(String route, String type) {
+  void navigate(dynamic type) {
     Navigator.pushNamed(context, Routes.foodType, arguments: type);
   }
 

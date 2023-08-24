@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/primary_button.dart';
@@ -10,7 +9,7 @@ class FoodPageView extends StatefulWidget {
   const FoodPageView(
       {super.key, required this.category, required this.navigate});
   final List<dynamic> category;
-  final void Function(String, String) navigate;
+  final void Function(String) navigate;
   @override
   State<FoodPageView> createState() => _FoodPageViewState();
 }
@@ -89,8 +88,7 @@ class _FoodPageViewState extends State<FoodPageView> {
         Positioned(
             bottom: 90,
             child: PrimaryButton(onTap: () {
-              widget.navigate(
-                  Routes.foodType, widget.category[currentIndex].name);
+              widget.navigate(widget.category[currentIndex].name);
             }))
       ],
     );
