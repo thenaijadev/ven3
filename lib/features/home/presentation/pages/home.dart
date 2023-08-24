@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
-import 'package:the_food_hub_nsk_nig/features/home/data/models/food_category.dart';
+import 'package:the_food_hub_nsk_nig/features/foodType/data/models/food_category.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/food_page_view.dart';
 
 class HomeScreen extends StatefulWidget {
