@@ -3,8 +3,9 @@ class Routes {
   static const String registration = '/registeration';
   static const String login = '/login';
   static const String home = '/home';
+  static const String foodType = '/foodType';
 
-  static const String gender = '/gender';
+  // static const String gender = '/gender';
   static const String profileDetails = '/profileDetails';
   static const String phoneVerification = '/phoneVerification';
   static const String otp = '/otp';

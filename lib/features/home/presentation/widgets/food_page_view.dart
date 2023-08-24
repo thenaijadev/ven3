@@ -1,14 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/home/data/models/food_category.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/primary_button.dart';
 
 class FoodPageView extends StatefulWidget {
-  const FoodPageView({super.key, required this.category});
-  final List<FoodCategory> category;
+  const FoodPageView(
+      {super.key, required this.category, required this.navigate});
+  final List<dynamic> category;
+  final void Function(String, String) navigate;
   @override
   State<FoodPageView> createState() => _FoodPageViewState();
 }
@@ -78,13 +80,18 @@ class _FoodPageViewState extends State<FoodPageView> {
                 ),
                 TextWidget(
                   text: widget.category[currentIndex].name,
-                  fontSize: 50,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: AppColors.orange,
                 ),
               ],
             )),
-        Positioned(bottom: 90, child: PrimaryButton(onTap: () {}))
+        Positioned(
+            bottom: 90,
+            child: PrimaryButton(onTap: () {
+              widget.navigate(
+                  Routes.foodType, widget.category[currentIndex].name);
+            }))
       ],
     );
   }

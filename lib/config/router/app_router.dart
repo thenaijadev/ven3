@@ -5,6 +5,7 @@ import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/home_scree
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/login_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/registration_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/pages/home.dart';
+import 'package:the_food_hub_nsk_nig/features/foodType/presentation/food_type.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -28,7 +29,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
         );
-
+      case Routes.foodType:
+        var data = routeSettings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => FoodTypeScreen(
+            type: data,
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const ErrorScreen(),
