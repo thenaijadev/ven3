@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_food_hub_nsk_nig/features/home/data/models/food_category.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/food_page_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,16 +10,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> images = [
-    "assets/images/swallow.jpg",
-    "assets/images/rice.jpg",
-    "assets/images/pasta.jpg"
+  List<FoodCategory> foods = [
+    FoodCategory(name: "Swallow", image: "assets/images/swallow.jpg"),
+    FoodCategory(name: "Rice", image: "assets/images/rice.jpg"),
+    FoodCategory(name: "Pasta", image: "assets/images/pasta.jpg"),
   ];
-  List<String> foods = ["Swallow", "Rice", "Pasta"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FoodPageView(images: images, optionLabels: foods),
+      body: FoodPageView(
+        category: foods,
+      ),
     );
   }
 }

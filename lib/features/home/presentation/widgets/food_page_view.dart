@@ -3,13 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/home/data/models/food_category.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/primary_button.dart';
 
 class FoodPageView extends StatefulWidget {
-  const FoodPageView(
-      {super.key, required this.images, required this.optionLabels});
-  final List<String> images;
-  final List<String> optionLabels;
+  const FoodPageView({super.key, required this.category});
+  final List<FoodCategory> category;
   @override
   State<FoodPageView> createState() => _FoodPageViewState();
 }
@@ -29,7 +28,7 @@ class _FoodPageViewState extends State<FoodPageView> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  widget.images[currentIndex],
+                  widget.category[currentIndex].image,
                 ),
               ),
             ),
@@ -49,7 +48,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                 currentIndex = value;
               });
             },
-            itemCount: widget.images.length,
+            itemCount: widget.category.length,
             itemBuilder: (context, index) {
               return FractionallySizedBox(
                 widthFactor: 0.8,
@@ -59,7 +58,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
-                        widget.images[index],
+                        widget.category[index].image,
                       ),
                     ),
                   ),
@@ -78,7 +77,7 @@ class _FoodPageViewState extends State<FoodPageView> {
                   color: Colors.white,
                 ),
                 TextWidget(
-                  text: widget.optionLabels[currentIndex],
+                  text: widget.category[currentIndex].name,
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                   color: AppColors.orange,
