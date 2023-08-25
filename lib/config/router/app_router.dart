@@ -4,7 +4,9 @@ import 'package:the_food_hub_nsk_nig/core/widgets/error_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/home_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/login_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/registration_screen.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/presentation/screens/cart_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food.dart';
+import 'package:the_food_hub_nsk_nig/features/food_types/presentation/drinks.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/presentation/protein.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/presentation/soups.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/pages/home.dart';
@@ -41,6 +43,15 @@ class AppRouter {
       case Routes.meats:
         return MaterialPageRoute(
           builder: (_) => const MeatScreen(),
+        );
+
+      case Routes.drinks:
+        return MaterialPageRoute(
+          builder: (_) => const DrinksScreen(),
+        );
+      case Routes.cart:
+        return MaterialPageRoute(
+          builder: (_) => const CartScreen(),
         );
       case Routes.foodType:
         var data = routeSettings.arguments as Food;
