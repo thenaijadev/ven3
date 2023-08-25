@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:the_food_hub_nsk_nig/features/foodType/data/models/food_type_item.dart';
+import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food_type_item.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartStateItemAdded(items: const [])) {
+  CartBloc() : super(CartInitial()) {
     on<CartEventAddCartItem>((event, emit) {
       final state = this.state;
       if (state is CartStateItemAdded) {

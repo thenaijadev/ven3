@@ -4,9 +4,11 @@ class Routes {
   static const String login = '/login';
   static const String home = '/home';
   static const String foodType = '/foodType';
+  static const String soups = '/soups';
+  static const String meats = '/meats';
+  static const String drinks = '/drinks';
 
   // static const String gender = '/gender';
-  static const String profileDetails = '/profileDetails';
   static const String phoneVerification = '/phoneVerification';
   static const String otp = '/otp';
   static const String forgotPassword = '/forgotPassword';

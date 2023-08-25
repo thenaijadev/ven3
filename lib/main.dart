@@ -42,6 +42,9 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) =>
                 AuthBloc(AuthRepository(provider: AuthProviderImpl())),
           ),
+          BlocProvider<AuthBloc>(
+              create: (BuildContext context) =>
+                  AuthBloc(AuthRepository(provider: AuthProviderImpl()))),
         ],
         child: MaterialApp(
           theme: ThemeData(textTheme: const TextTheme()),
