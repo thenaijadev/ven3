@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/price_summary.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -38,12 +39,20 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(children: [
-        CartItemWidget(
-          onShowDetails: () {},
-          onDelete: () {},
-        ),
-      ]),
+      body: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .65,
+            child: ListView(children: [
+              CartItemWidget(
+                onShowDetails: () {},
+                onDelete: () {},
+              ),
+            ]),
+          ),
+          const Flexible(child: PriceSummary())
+        ],
+      ),
     );
   }
 }
