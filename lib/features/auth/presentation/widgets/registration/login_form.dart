@@ -71,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
               builder: (context, state) {
                 return state is AuthStateIsloggingIn
                     ? const LoadingWidget()
-                    : AuthButton(
+                    : PrimaryOrangeButton(
                         label: "SIGN UP",
                         onTap: () {
                           // if (_formKey.currentState!.validate()) {}

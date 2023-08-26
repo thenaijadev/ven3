@@ -6,11 +6,9 @@ class CartItemWidget extends StatefulWidget {
   const CartItemWidget({
     Key? key,
     required this.onDelete,
-    required this.onShowDetails,
   }) : super(key: key);
 
   final VoidCallback onDelete;
-  final VoidCallback onShowDetails;
 
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();

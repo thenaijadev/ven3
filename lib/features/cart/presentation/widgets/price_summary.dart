@@ -19,7 +19,7 @@ class PriceSummary extends StatelessWidget {
         PriceDataRow(
           title: "Total:",
           amount: "37.60",
-        )
+        ),
       ],
     );
   }

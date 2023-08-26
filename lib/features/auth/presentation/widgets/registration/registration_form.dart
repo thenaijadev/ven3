@@ -77,7 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
               builder: (context, state) {
                 return state is AuthStateIsRegistering
                     ? const LoadingWidget()
-                    : AuthButton(
+                    : PrimaryOrangeButton(
                         label: "SIGN UP",
                         onTap: () {
                           // if (_formKey.currentState!.validate()) {}
