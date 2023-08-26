@@ -9,7 +9,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Card(
         shadowColor: AppColors.orange,
         shape: RoundedRectangleBorder(
@@ -20,7 +20,7 @@ class MealItem extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                margin: const EdgeInsets.only(left: 20),
+                margin: const EdgeInsets.only(left: 10),
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(

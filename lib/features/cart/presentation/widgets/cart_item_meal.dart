@@ -5,9 +5,13 @@ import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity
 
 class CartItemMeal extends StatefulWidget {
   const CartItemMeal(
-      {super.key, required this.onShowDetails, required this.onDelete});
+      {super.key,
+      required this.onShowDetails,
+      required this.onDelete,
+      required this.showDetailsIcon});
   final VoidCallback onShowDetails;
   final VoidCallback onDelete;
+  final IconData showDetailsIcon;
 
   @override
   State<CartItemMeal> createState() => _CartItemMealState();
@@ -17,7 +21,8 @@ class _CartItemMealState extends State<CartItemMeal> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding:
+          const EdgeInsets.only(left: 20.0, right: 20.0, top: 10, bottom: 10),
       child: GestureDetector(
         onTap: widget.onShowDetails,
         child: Card(
@@ -87,11 +92,11 @@ class _CartItemMealState extends State<CartItemMeal> {
                                 onIncrease: () {}, onReduce: () {}, quantity: 4)
                           ],
                         )),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 27.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 27.0),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                               width: 100,
                               child: TextWidget(
                                 overflow: TextOverflow.ellipsis,
@@ -99,7 +104,7 @@ class _CartItemMealState extends State<CartItemMeal> {
                                 text: "Coconut rice, Fried Chiken, Coke,",
                                 color: AppColors.detailsGrey,
                               )),
-                          Icon(Icons.keyboard_arrow_down_rounded)
+                          Icon(widget.showDetailsIcon)
                         ],
                       ),
                     )

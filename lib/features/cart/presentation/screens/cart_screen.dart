@@ -40,8 +40,9 @@ class CartScreen extends StatelessWidget {
       ),
       body: ListView(children: [
         CartItemWidget(
+          onShowDetails: () {},
           onDelete: () {},
-        )
+        ),
       ]),
     );
   }
