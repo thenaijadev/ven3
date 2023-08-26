@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_widget.dart';
@@ -53,7 +54,11 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           const Flexible(child: PriceSummary()),
-          PrimaryOrangeButton(onTap: () {}, label: "Checkout")
+          PrimaryOrangeButton(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.payment);
+              },
+              label: "Checkout")
         ],
       ),
     );

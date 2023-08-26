@@ -11,6 +11,7 @@ import 'package:the_food_hub_nsk_nig/features/food_types/presentation/protein.da
 import 'package:the_food_hub_nsk_nig/features/food_types/presentation/soups.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/pages/home.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/presentation/food_type.dart';
+import 'package:the_food_hub_nsk_nig/features/payment/presentation/screens/add_new_card_screen.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -52,6 +53,10 @@ class AppRouter {
       case Routes.cart:
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
+        );
+      case Routes.payment:
+        return MaterialPageRoute(
+          builder: (_) => const AddNewCardScreen(),
         );
       case Routes.foodType:
         var data = routeSettings.arguments as Food;
