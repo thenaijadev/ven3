@@ -8,6 +8,7 @@ import 'package:the_food_hub_nsk_nig/config/superbase/provider/super_base_provod
 import 'package:the_food_hub_nsk_nig/features/auth/bloc/auth_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/data/providers/auth_provider_impl.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/data/repositories/auth_repository.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
 
 void main() async {
   appInitialization();
@@ -42,9 +43,7 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) =>
                 AuthBloc(AuthRepository(provider: AuthProviderImpl())),
           ),
-          BlocProvider<AuthBloc>(
-              create: (BuildContext context) =>
-                  AuthBloc(AuthRepository(provider: AuthProviderImpl()))),
+          BlocProvider<CartBloc>(create: (BuildContext context) => CartBloc())
         ],
         child: MaterialApp(
           theme: ThemeData(textTheme: const TextTheme()),

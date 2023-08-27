@@ -3,11 +3,9 @@ import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_ite
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/meal_details.dart';
 
 class CartItemWidget extends StatefulWidget {
-  const CartItemWidget({
-    Key? key,
-    required this.onDelete,
-  }) : super(key: key);
-
+  const CartItemWidget({Key? key, required this.onDelete, required this.index})
+      : super(key: key);
+  final int index;
   final VoidCallback onDelete;
 
   @override
@@ -68,7 +66,7 @@ class _CartItemWidgetState extends State<CartItemWidget>
           position: _slideAnimation,
           child: Visibility(
             visible: showDetails,
-            child: const MealDetails(),
+            child: MealDetails(mealItemIndex: widget.index),
           ),
         ),
       ],

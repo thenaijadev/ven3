@@ -31,7 +31,8 @@ class _SignUpFormState extends State<SignUpForm> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 40),
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const TextWidget(
               text: "Sign Up",

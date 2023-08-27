@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/meal_item.dart';
 
 class MealDetails extends StatelessWidget {
-  const MealDetails({super.key});
+  const MealDetails({super.key, required this.mealItemIndex});
+  final int mealItemIndex;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [MealItem(), MealItem(), MealItem()],
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        return state is CartStateItemAdded
+            ? SizedBox(
+                height: 300,
+                child: ListView.builder(
+                  itemCount: state.meals[mealItemIndex].meals.length,
+                  itemBuilder: (context, index) {
+                    return MealItem(
+                      price: state.meals[mealItemIndex].meals[index].price,
+                      name: state.meals[mealItemIndex].meals[index].name,
+                      quantity: state.meals[mealItemIndex].meals[index].amount,
+                      image: state.meals[mealItemIndex].meals[index].image,
+                    );
+                  },
+                ),
+              )
+            : const SizedBox();
+      },
     );
   }
 }

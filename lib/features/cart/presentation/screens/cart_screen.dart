@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/price_summary.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +57,21 @@ class CartScreen extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * .55,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return CartItemWidget(
-                  onDelete: () {},
-                );
+            child: BlocBuilder<CartBloc, CartState>(
+              builder: (context, state) {
+                return state is CartStateItemAdded
+                    ? state.meals.isEmpty
+                        ? const Center(child: TextWidget(text: "Empty"))
+                        : ListView.builder(
+                            itemCount: state.meals.length,
+                            itemBuilder: (context, index) {
+                              return CartItemWidget(
+                                index: index,
+                                onDelete: () {},
+                              );
+                            },
+                          )
+                    : const SizedBox();
               },
             ),
           ),

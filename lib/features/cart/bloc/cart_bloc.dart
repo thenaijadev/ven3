@@ -9,12 +9,12 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartInitial()) {
-    on<CartEventAddCartItem>((event, emit) {
+  CartBloc() : super(CartStateItemAdded(meals: const [])) {
+    on<CartEventAddCartMeal>((event, emit) {
       final state = this.state;
       if (state is CartStateItemAdded) {
-        final meals = state.meals;
-        meals.add(event.meal);
+        List<Meal> meals = [...state.meals, event.meal];
+        print(meals);
         emit(CartStateItemAdded(meals: meals));
       }
     });

@@ -3,9 +3,9 @@ part of 'cart_bloc.dart';
 @immutable
 sealed class CartEvent {}
 
-class CartEventAddCartItem extends CartEvent {
+class CartEventAddCartMeal extends CartEvent {
   final Meal meal;
-  CartEventAddCartItem({required this.meal});
+  CartEventAddCartMeal({required this.meal});
 }
 
 class CartEventRemoveCartItem extends CartEvent {

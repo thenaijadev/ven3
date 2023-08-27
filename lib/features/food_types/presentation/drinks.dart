@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/models/meal.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/models/meal_item.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/food_page_view.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food_type_item.dart';
@@ -36,6 +39,7 @@ class DrinksScreen extends StatelessWidget {
     return Scaffold(
         body: FoodPageView(
       navigate: (p1) {
+        final CartBloc cartBloc = context.read<CartBloc>();
         final List<MealItemModel> theMeal = [...mealList];
         final meal = MealItemModel(
             name: p1.name,
@@ -44,7 +48,7 @@ class DrinksScreen extends StatelessWidget {
             amount: 1,
             image: p1.image);
         theMeal.add(meal);
-
+        cartBloc.add(CartEventAddCartMeal(meal: Meal(meals: theMeal)));
         Navigator.pushNamed(context, Routes.cart);
       },
       category: drinks,
