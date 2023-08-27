@@ -44,9 +44,7 @@ class DrinksScreen extends StatelessWidget {
             amount: 1,
             image: p1.image);
         theMeal.add(meal);
-        for (var element in theMeal) {
-          print(element.toString());
-        }
+
         Navigator.pushNamed(context, Routes.cart);
       },
       category: drinks,
