@@ -66,6 +66,8 @@ class _CartScreenState extends State<CartScreen> {
                             itemCount: state.meals.length,
                             itemBuilder: (context, index) {
                               return CartItemWidget(
+                                image: state.meals[index].meals[0].image,
+                                name: state.meals[index].meals[0].name,
                                 index: index,
                                 onDelete: () {},
                               );

@@ -8,10 +8,14 @@ class CartItemMeal extends StatefulWidget {
       {super.key,
       required this.onShowDetails,
       required this.onDelete,
-      required this.showDetailsIcon});
+      required this.showDetailsIcon,
+      required this.name,
+      required this.image});
   final VoidCallback onShowDetails;
   final VoidCallback onDelete;
   final IconData showDetailsIcon;
+  final String name;
+  final String image;
 
   @override
   State<CartItemMeal> createState() => _CartItemMealState();
@@ -40,9 +44,8 @@ class _CartItemMealState extends State<CartItemMeal> {
                   width: 110,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                        image: AssetImage("assets/images/swallow.jpg"),
-                        fit: BoxFit.cover),
+                    image: DecorationImage(
+                        image: AssetImage(widget.image), fit: BoxFit.cover),
                   ),
                 ),
                 Column(
@@ -53,10 +56,10 @@ class _CartItemMealState extends State<CartItemMeal> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 12.0),
                             child: TextWidget(
-                              text: "Rice Meal",
+                              text: widget.name,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),

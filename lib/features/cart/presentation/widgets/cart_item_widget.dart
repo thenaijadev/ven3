@@ -3,11 +3,17 @@ import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_ite
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/meal_details.dart';
 
 class CartItemWidget extends StatefulWidget {
-  const CartItemWidget({Key? key, required this.onDelete, required this.index})
+  const CartItemWidget(
+      {Key? key,
+      required this.onDelete,
+      required this.index,
+      required this.name,
+      required this.image})
       : super(key: key);
   final int index;
   final VoidCallback onDelete;
-
+  final String name;
+  final String image;
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
 }
@@ -56,6 +62,8 @@ class _CartItemWidgetState extends State<CartItemWidget>
     return Column(
       children: [
         CartItemMeal(
+          image: widget.image,
+          name: widget.name,
           onShowDetails: _toggleDetails,
           showDetailsIcon: showDetails
               ? Icons.keyboard_arrow_up_rounded
