@@ -4,6 +4,7 @@ import 'package:the_food_hub_nsk_nig/core/widgets/error_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/home_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/login_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/registration_screen.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/models/meal_item.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/screens/cart_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/presentation/drinks.dart';
@@ -37,18 +38,23 @@ class AppRouter {
         );
 
       case Routes.soups:
+        var data = routeSettings.arguments as List<MealItemModel>;
         return MaterialPageRoute(
-          builder: (_) => const SoupsScreen(),
+          builder: (_) => SoupsScreen(mealList: data),
         );
 
       case Routes.meats:
+        var data = routeSettings.arguments as List<MealItemModel>;
+
         return MaterialPageRoute(
-          builder: (_) => const MeatScreen(),
+          builder: (_) => MeatScreen(mealList: data),
         );
 
       case Routes.drinks:
+        var data = routeSettings.arguments as List<MealItemModel>;
+
         return MaterialPageRoute(
-          builder: (_) => const DrinksScreen(),
+          builder: (_) => DrinksScreen(mealList: data),
         );
       case Routes.cart:
         return MaterialPageRoute(

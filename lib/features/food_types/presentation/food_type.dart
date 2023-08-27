@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/models/meal_item.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food.dart';
 import 'package:the_food_hub_nsk_nig/features/home/presentation/widgets/food_page_view.dart';
 import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food_type.dart';
@@ -78,10 +79,18 @@ class FoodTypeScreen extends StatelessWidget {
     return Scaffold(
         body: FoodPageView(
       navigate: (p1) {
+        final List<MealItemModel> theMeal = [];
+        final meal = MealItemModel(
+            name: p1.name,
+            id: p1.id,
+            price: p1.price!,
+            amount: 1,
+            image: p1.image);
+        theMeal.add(meal);
         if (p1.type == "Swallow") {
-          Navigator.pushNamed(context, Routes.soups);
+          Navigator.pushNamed(context, Routes.soups, arguments: theMeal);
         } else {
-          Navigator.pushNamed(context, Routes.meats);
+          Navigator.pushNamed(context, Routes.meats, arguments: theMeal);
         }
       },
       category: category,
