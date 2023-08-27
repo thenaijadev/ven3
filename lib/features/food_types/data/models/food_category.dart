@@ -10,10 +10,13 @@ class FoodCategory implements Food {
   final String image;
   @override
   final String? type;
+  @override
+  final int? price;
 
   FoodCategory(
       {String? id, // Allow providing id, otherwise generate one
       required this.name,
+      this.price,
       required this.image,
       this.type})
       : id = id ??

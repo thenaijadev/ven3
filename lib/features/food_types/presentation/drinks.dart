@@ -12,13 +12,25 @@ class DrinksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<FoodTypeItem> drinks = [
       FoodTypeItem(
-          type: "Drink", name: "Coke", image: "assets/images/coke.jpg"),
+          price: 300,
+          type: "Drink",
+          name: "Coke",
+          image: "assets/images/coke.jpg"),
       FoodTypeItem(
-          type: "Drink", name: "Fanta", image: "assets/images/fanta.jpg"),
+          price: 300,
+          type: "Drink",
+          name: "Fanta",
+          image: "assets/images/fanta.jpg"),
       FoodTypeItem(
-          type: "Drink", name: "Sprite", image: "assets/images/sprite.jpg"),
+          price: 300,
+          type: "Drink",
+          name: "Sprite",
+          image: "assets/images/sprite.jpg"),
       FoodTypeItem(
-          type: "Meat", name: "Water", image: "assets/images/water.jpg"),
+          price: 300,
+          type: "Meat",
+          name: "Water",
+          image: "assets/images/water.jpg"),
     ];
 
     return Scaffold(

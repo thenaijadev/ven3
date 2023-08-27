@@ -13,36 +13,56 @@ class FoodTypeScreen extends StatelessWidget {
     List<FoodType> foodTypes = [
       FoodType(type: "Swallow", items: [
         FoodTypeItem(
-            type: "Swallow", name: "Amala", image: "assets/images/amala.jpg"),
+            price: 230,
+            type: "Swallow",
+            name: "Amala",
+            image: "assets/images/amala.jpg"),
         FoodTypeItem(
-            type: "Swallow", name: "Semo", image: "assets/images/semo.jpg"),
+            price: 400,
+            type: "Swallow",
+            name: "Semo",
+            image: "assets/images/semo.jpg"),
         FoodTypeItem(
-            type: "Swallow", name: "Fufu", image: "assets/images/fufu.jpg"),
+            price: 1200,
+            type: "Swallow",
+            name: "Fufu",
+            image: "assets/images/fufu.jpg"),
         FoodTypeItem(
-            type: "Swallow", name: "Eba", image: "assets/images/eba.jpg"),
+            price: 900,
+            type: "Swallow",
+            name: "Eba",
+            image: "assets/images/eba.jpg"),
       ]),
       FoodType(type: "Rice", items: [
         FoodTypeItem(
+            price: 700,
             type: "Rice",
             name: "Rice and stew",
             image: "assets/images/riceandstew.jpg"),
         FoodTypeItem(
+            price: 900,
             type: "Rice",
             name: "Coconut Rice",
             image: "assets/images/coconut_rice.jpg"),
         FoodTypeItem(
+            price: 400,
             type: "Rice",
             name: "Fried rice",
             image: "assets/images/fried_rice.jpg"),
         FoodTypeItem(
-            type: "Rice", name: "Jollof", image: "assets/images/jollof.jpg"),
+            price: 700,
+            type: "Rice",
+            name: "Jollof",
+            image: "assets/images/jollof.jpg"),
       ]),
       FoodType(type: "Pasta", items: [
         FoodTypeItem(
+            price: 200,
             type: "Pasta",
             name: "Spag with sauce",
             image: "assets/images/spag_with_sauce.jpeg"),
         FoodTypeItem(
+            price: 1300,
             type: "Pasta",
             name: "Stir fried spag",
             image: "assets/images/stir_fried_spag.jpg"),

@@ -11,10 +11,13 @@ class FoodTypeItem implements Food {
   final String image;
   @override
   final String type;
+  @override
+  final int price;
 
   FoodTypeItem({
     String? id, // Allow providing id, otherwise generate one
     required this.name,
+    required this.price,
     required this.type,
     required this.image,
   }) : id = id ??

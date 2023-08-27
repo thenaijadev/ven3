@@ -12,14 +12,30 @@ class SoupsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<FoodTypeItem> soups = [
       FoodTypeItem(
-          type: "Soup", name: "Efo", image: "assets/images/eforiro.jpg"),
+          price: 300,
+          type: "Soup",
+          name: "Efo",
+          image: "assets/images/eforiro.jpg"),
       FoodTypeItem(
-          type: "Soup", name: "Egusi", image: "assets/images/egusi.jpg"),
+          price: 300,
+          type: "Soup",
+          name: "Egusi",
+          image: "assets/images/egusi.jpg"),
       FoodTypeItem(
-          type: "Soup", name: "Nsala", image: "assets/images/nsala.jpg"),
+          price: 700,
+          type: "Soup",
+          name: "Nsala",
+          image: "assets/images/nsala.jpg"),
       FoodTypeItem(
-          type: "Soup", name: "Ewedu", image: "assets/images/ewedu.jpeg"),
-      FoodTypeItem(type: "Soup", name: "Okro", image: "assets/images/okro.jpg"),
+          price: 200,
+          type: "Soup",
+          name: "Ewedu",
+          image: "assets/images/ewedu.jpeg"),
+      FoodTypeItem(
+          price: 300,
+          type: "Soup",
+          name: "Okro",
+          image: "assets/images/okro.jpg"),
     ];
 
     return Scaffold(
