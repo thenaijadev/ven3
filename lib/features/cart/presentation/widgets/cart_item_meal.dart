@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity_row.dart';
 
 class CartItemMeal extends StatefulWidget {
   const CartItemMeal(
@@ -48,56 +47,52 @@ class _CartItemMealState extends State<CartItemMeal> {
                         image: AssetImage(widget.image), fit: BoxFit.cover),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 210,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 12.0),
-                            child: TextWidget(
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextWidget(
                               text: widget.name,
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          GestureDetector(
-                            onTap: widget.onDelete,
-                            child: const Icon(
-                              Icons.delete,
-                              color: AppColors.orange,
-                              size: 18,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                        padding: const EdgeInsets.only(
-                            left: 25, top: 15, bottom: 15),
-                        child: Row(
-                          children: [
-                            const TextWidget(
-                              text: "\$15.30",
-                              color: AppColors.orange,
                               fontWeight: FontWeight.bold,
                             ),
                             const SizedBox(
                               width: 20,
                             ),
-                            QuantityRow(
-                                onIncrease: () {}, onReduce: () {}, quantity: 4)
+                            GestureDetector(
+                              onTap: widget.onDelete,
+                              child: const Icon(
+                                Icons.delete,
+                                color: AppColors.orange,
+                                size: 18,
+                              ),
+                            )
                           ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 27.0),
-                      child: Row(
+                        ),
+                      ),
+                      Container(
+                          padding: const EdgeInsets.only(top: 15, bottom: 15),
+                          child: const Row(
+                            children: [
+                              TextWidget(
+                                text: "\$15.30",
+                                color: AppColors.orange,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              // QuantityRow(
+                              //     onIncrease: () {}, onReduce: () {}, quantity: 4)
+                            ],
+                          )),
+                      Row(
                         children: [
                           const SizedBox(
                               width: 100,
@@ -109,9 +104,9 @@ class _CartItemMealState extends State<CartItemMeal> {
                               )),
                           Icon(widget.showDetailsIcon)
                         ],
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
