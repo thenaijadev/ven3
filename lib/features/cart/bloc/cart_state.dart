@@ -9,12 +9,12 @@ final class CartInitial extends CartState {
 }
 
 class CartStateItemAdded extends CartState {
-  final List<FoodTypeItem> items;
+  final List<Meal> meals;
 
-  CartStateItemAdded({required this.items});
+  CartStateItemAdded({required this.meals});
 
   @override
-  List<Object?> get props => [items];
+  List<Object?> get props => [meals];
 }
 
 class CartItemIsAdding extends CartState {
