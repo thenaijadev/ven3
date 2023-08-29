@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/price_data_row.dart';
 
 class PriceSummary extends StatelessWidget {
@@ -6,21 +8,33 @@ class PriceSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        PriceDataRow(
-          title: "Subtotal:",
-          amount: "27.30",
-        ),
-        PriceDataRow(
-          title: "Delivery:",
-          amount: "10.30",
-        ),
-        PriceDataRow(
-          title: "Total:",
-          amount: "37.60",
-        ),
-      ],
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        int totalPrice = 0;
+        if (state is CartStateItemAdded) {
+          for (var element in state.meals) {
+            totalPrice = element.price + totalPrice;
+          }
+        }
+        final deliveryFee = totalPrice * .1;
+
+        return Column(
+          children: [
+            PriceDataRow(
+              title: "Subtotal:",
+              amount: "$totalPrice",
+            ),
+            PriceDataRow(
+              title: "Delivery:",
+              amount: "$deliveryFee",
+            ),
+            PriceDataRow(
+              title: "Total:",
+              amount: "${totalPrice + deliveryFee}",
+            ),
+          ],
+        );
+      },
     );
   }
 }

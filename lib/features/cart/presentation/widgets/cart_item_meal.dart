@@ -83,7 +83,7 @@ class _CartItemMealState extends State<CartItemMeal> {
                           child: Row(
                             children: [
                               TextWidget(
-                                text: "\$${widget.price}",
+                                text: "₦${widget.price}",
                                 color: AppColors.orange,
                                 fontWeight: FontWeight.bold,
                               ),
