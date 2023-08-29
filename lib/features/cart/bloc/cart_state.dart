@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'cart_bloc.dart';
 
 @immutable
@@ -12,6 +13,14 @@ class CartStateItemAdded extends CartState {
   final List<Meal> meals;
 
   CartStateItemAdded({required this.meals});
+
+  CartStateItemAdded copyWith({
+    List<Meal>? meals,
+  }) {
+    return CartStateItemAdded(
+      meals: meals ?? this.meals,
+    );
+  }
 
   @override
   List<Object?> get props => [meals];

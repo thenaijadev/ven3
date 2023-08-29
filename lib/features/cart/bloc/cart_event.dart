@@ -9,6 +9,26 @@ class CartEventAddCartMeal extends CartEvent {
 }
 
 class CartEventRemoveCartItem extends CartEvent {
-  final FoodTypeItem item;
-  CartEventRemoveCartItem({required this.item});
+  final Meal meal;
+  CartEventRemoveCartItem({required this.meal});
+}
+
+class CartEventMealAddItemQuantity extends CartEvent {
+  final MealItemModel mealItem;
+  final int mealIndex;
+
+  CartEventMealAddItemQuantity({
+    required this.mealItem,
+    required this.mealIndex,
+  });
+}
+
+class CartEventMealReduceItemQuantity extends CartEvent {
+  final MealItemModel mealItem;
+  final int mealIndex;
+
+  CartEventMealReduceItemQuantity({
+    required this.mealItem,
+    required this.mealIndex,
+  });
 }

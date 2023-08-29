@@ -45,10 +45,15 @@ class DrinksScreen extends StatelessWidget {
             name: p1.name,
             id: p1.id,
             price: p1.price!,
-            amount: 1,
+            quantity: 1,
             image: p1.image);
         theMeal.add(meal);
-        cartBloc.add(CartEventAddCartMeal(meal: Meal(meals: theMeal)));
+        int price = 0;
+        for (var element in theMeal) {
+          price = element.price + price;
+        }
+        cartBloc.add(
+            CartEventAddCartMeal(meal: Meal(meals: theMeal, price: price)));
         Navigator.pushNamed(context, Routes.cart);
       },
       category: drinks,

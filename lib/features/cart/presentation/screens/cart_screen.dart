@@ -22,6 +22,8 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final CartBloc cartBloc = context.read<CartBloc>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,27 +33,27 @@ class _CartScreenState extends State<CartScreen> {
         ),
         elevation: 0,
         backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Transform.translate(
-            offset: const Offset(20, 0),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Material(
-                color: Colors.white,
-                elevation: 2,
-                borderRadius: BorderRadius.circular(10),
-                child: const Icon(
-                  Icons.chevron_left,
-                  color: Colors.black,
-                  size: 20,
-                ),
-              ),
-            ),
-          ),
-        ),
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: Transform.translate(
+        //     offset: const Offset(20, 0),
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(10.0),
+        //       child: Material(
+        //         color: Colors.white,
+        //         elevation: 2,
+        //         borderRadius: BorderRadius.circular(10),
+        //         child: const Icon(
+        //           Icons.chevron_left,
+        //           color: Colors.black,
+        //           size: 20,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
       body: Column(
         children: [
@@ -68,8 +70,12 @@ class _CartScreenState extends State<CartScreen> {
                               return CartItemWidget(
                                 image: state.meals[index].meals[0].image,
                                 name: state.meals[index].meals[0].name,
+                                price: state.meals[index].price,
                                 index: index,
-                                onDelete: () {},
+                                onDelete: () {
+                                  cartBloc.add(CartEventRemoveCartItem(
+                                      meal: state.meals[index]));
+                                },
                               );
                             },
                           )

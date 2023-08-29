@@ -9,11 +9,16 @@ class MealItem extends StatelessWidget {
       required this.price,
       required this.quantity,
       required this.image,
-      required this.name});
+      required this.name,
+      required this.onIncrease,
+      required this.onReduce});
   final int price;
   final int quantity;
   final String image;
   final String name;
+  final VoidCallback onIncrease;
+  final VoidCallback onReduce;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,11 +73,11 @@ class MealItem extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        width: 40,
+                        width: 20,
                       ),
                       QuantityRow(
-                          onReduce: () {},
-                          onIncrease: () {},
+                          onReduce: onReduce,
+                          onIncrease: onIncrease,
                           quantity: quantity)
                     ],
                   ),

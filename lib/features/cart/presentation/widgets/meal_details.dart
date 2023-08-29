@@ -9,6 +9,8 @@ class MealDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartBloc cartBloc = context.read<CartBloc>();
+
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
         return state is CartStateItemAdded
@@ -18,9 +20,20 @@ class MealDetails extends StatelessWidget {
                   itemCount: state.meals[mealItemIndex].meals.length,
                   itemBuilder: (context, index) {
                     return MealItem(
+                      onIncrease: () {
+                        cartBloc.add(CartEventMealAddItemQuantity(
+                            mealIndex: mealItemIndex,
+                            mealItem: state.meals[mealItemIndex].meals[index]));
+                      },
+                      onReduce: () {
+                        cartBloc.add(CartEventMealReduceItemQuantity(
+                            mealIndex: mealItemIndex,
+                            mealItem: state.meals[mealItemIndex].meals[index]));
+                      },
                       price: state.meals[mealItemIndex].meals[index].price,
                       name: state.meals[mealItemIndex].meals[index].name,
-                      quantity: state.meals[mealItemIndex].meals[index].amount,
+                      quantity:
+                          state.meals[mealItemIndex].meals[index].quantity,
                       image: state.meals[mealItemIndex].meals[index].image,
                     );
                   },

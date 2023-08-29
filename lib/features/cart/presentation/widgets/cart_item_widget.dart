@@ -8,12 +8,14 @@ class CartItemWidget extends StatefulWidget {
       required this.onDelete,
       required this.index,
       required this.name,
-      required this.image})
+      required this.image,
+      required this.price})
       : super(key: key);
   final int index;
   final VoidCallback onDelete;
   final String name;
   final String image;
+  final int price;
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
 }
@@ -63,6 +65,7 @@ class _CartItemWidgetState extends State<CartItemWidget>
       children: [
         CartItemMeal(
           image: widget.image,
+          price: widget.price,
           name: widget.name,
           onShowDetails: _toggleDetails,
           showDetailsIcon: showDetails

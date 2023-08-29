@@ -45,7 +45,7 @@ class MeatScreen extends StatelessWidget {
             name: p1.name,
             id: p1.id,
             price: p1.price!,
-            amount: 1,
+            quantity: 1,
             image: p1.image);
         theMeal.add(meal);
         Navigator.pushNamed(context, Routes.drinks, arguments: theMeal);
