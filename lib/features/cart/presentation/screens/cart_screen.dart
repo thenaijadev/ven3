@@ -4,6 +4,7 @@ import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/add_new_meal.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/price_summary.dart';
 
@@ -57,8 +58,13 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: Column(
         children: [
+          AddNewMealButton(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.home);
+            },
+          ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .55,
+            height: MediaQuery.of(context).size.height * .50,
             child: BlocBuilder<CartBloc, CartState>(
               builder: (context, state) {
                 return state is CartStateItemAdded
