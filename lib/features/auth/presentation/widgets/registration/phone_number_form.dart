@@ -1,7 +1,10 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/app_bar_back_button.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/registration/country_picker.dart';
 
 class PhoneNumberForm extends StatefulWidget {
   const PhoneNumberForm({super.key});
@@ -12,6 +15,17 @@ class PhoneNumberForm extends StatefulWidget {
 
 class _PhoneNumberFormState extends State<PhoneNumberForm> {
   final GlobalKey<FormFieldState> inputKey = GlobalKey<FormFieldState>();
+  String flag = "🇳🇬";
+  String phoneCode = "+234";
+  String phoneNumber = "";
+  String phoneNo = "";
+  void onSelect(Country country) {
+    setState(() {
+      flag = country.flagEmoji;
+      phoneCode = "+${country.phoneCode}";
+      print(phoneCode);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +53,32 @@ class _PhoneNumberFormState extends State<PhoneNumberForm> {
               fontSize: 14,
             ),
             InputFieldWidget(
+                keyboardType: TextInputType.phone,
                 prefixicon: GestureDetector(
-                  onTap: () {},
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 10.0, right: 10),
+                  onTap: () {
+                    pickCountry(context, onSelect);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10),
                     child: TextWidget(
-                      text: "🇳🇬",
+                      text: flag,
                       fontSize: 40,
                     ),
                   ),
                 ),
-                label: "",
-                hintText: "Phone number",
-                onChanged: (val) {},
-                textFieldkey: inputKey)
+                label: "$phoneCode$phoneNo",
+                hintText: "9012345678",
+                onChanged: (val) {
+                  setState(() {
+                    phoneNo = val!;
+                    phoneNumber = "$phoneCode$phoneNo";
+                  });
+                },
+                textFieldkey: inputKey),
+            PrimaryOrangeButton(
+              label: "Verify",
+              onTap: () {},
+            )
           ],
         ),
       ),

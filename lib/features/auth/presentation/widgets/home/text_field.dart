@@ -10,6 +10,7 @@ class InputFieldWidget extends StatelessWidget {
       this.initialValue,
       required this.hintText,
       this.hintSize = 14,
+      this.keyboardType = TextInputType.text,
       required this.onChanged,
       this.validator,
       required this.textFieldkey,
@@ -44,6 +45,7 @@ class InputFieldWidget extends StatelessWidget {
   // final Color hintColor;
   final double labelFontSize;
   final TextEditingController? controller;
+  final TextInputType keyboardType;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,6 +62,7 @@ class InputFieldWidget extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          keyboardType: keyboardType,
           onTap: onTap,
           key: textFieldkey,
           initialValue: initialValue,
