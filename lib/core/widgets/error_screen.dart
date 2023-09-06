@@ -8,7 +8,9 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: TextWidget(text: "Route Does Not Exist"),
+        child: TextWidget(
+          text: "Route Does Not Exist",
+        ),
       ),
     );
   }
