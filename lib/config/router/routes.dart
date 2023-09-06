@@ -9,4 +9,5 @@ class Routes {
   static const String drinks = '/drinks';
   static const String cart = '/cart';
   static const String payment = '/payment';
+  static const String verifyPhoneNo = '/verifyPhoneNo';
 }
