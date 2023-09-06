@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/background_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/registration/phone_number_form.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -18,34 +19,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
           BackgroundWidget(
             image: "assets/images/sign_up_background.png",
           ),
+          PhoneNumberForm(),
         ],
-      ),
-    );
-  }
-}
-
-class AppBarBackButton extends StatelessWidget {
-  const AppBarBackButton({super.key, required this.onTap});
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Transform.translate(
-        offset: const Offset(20, 0),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Material(
-            color: Colors.white,
-            elevation: 2,
-            borderRadius: BorderRadius.circular(10),
-            child: const Icon(
-              Icons.chevron_left,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
       ),
     );
   }
