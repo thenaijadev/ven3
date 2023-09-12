@@ -5,15 +5,10 @@ import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/home_scree
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/login_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/phone_number_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/registration_screen.dart';
-import 'package:the_food_hub_nsk_nig/features/cart/models/meal_item.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/screens/cart_screen.dart';
-import 'package:the_food_hub_nsk_nig/features/food_types/data/models/food.dart';
-import 'package:the_food_hub_nsk_nig/features/food_types/presentation/drinks.dart';
-import 'package:the_food_hub_nsk_nig/features/food_types/presentation/protein.dart';
-import 'package:the_food_hub_nsk_nig/features/food_types/presentation/soups.dart';
-import 'package:the_food_hub_nsk_nig/features/home/presentation/pages/home.dart';
-import 'package:the_food_hub_nsk_nig/features/food_types/presentation/food_type.dart';
+
 import 'package:the_food_hub_nsk_nig/features/payment/presentation/screens/add_new_card_screen.dart';
+import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/buttom_nav_bar.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -37,26 +32,6 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
         );
-
-      case Routes.soups:
-        var data = routeSettings.arguments as List<MealItemModel>;
-        return MaterialPageRoute(
-          builder: (_) => SoupsScreen(mealList: data),
-        );
-
-      case Routes.meats:
-        var data = routeSettings.arguments as List<MealItemModel>;
-
-        return MaterialPageRoute(
-          builder: (_) => MeatScreen(mealList: data),
-        );
-
-      case Routes.drinks:
-        var data = routeSettings.arguments as List<MealItemModel>;
-
-        return MaterialPageRoute(
-          builder: (_) => DrinksScreen(mealList: data),
-        );
       case Routes.cart:
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
@@ -65,13 +40,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const AddNewCardScreen(),
         );
-      case Routes.foodType:
-        var data = routeSettings.arguments as Food;
-        return MaterialPageRoute(
-          builder: (_) => FoodTypeScreen(
-            food: data,
-          ),
-        );
+
       case Routes.verifyPhoneNo:
         return MaterialPageRoute(
           builder: (_) => const PhoneNumberScreen(),

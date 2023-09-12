@@ -21,6 +21,7 @@ class SignInOptions extends StatelessWidget {
           height: 20,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocConsumer<AuthBloc, AuthState>(
               listener: (context, state) {
@@ -29,7 +30,8 @@ class SignInOptions extends StatelessWidget {
                 }
               },
               builder: (context, state) {
-                return state is AuthStateIsRegistering
+                return state is AuthStateIsRegistering ||
+                        state is AuthStateIsRegisteringwithGoogle
                     ? const LoadingWidget()
                     : OAuthButton(
                         onTap: () {
