@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is ProductStateIsLoading) {
-          return const LoadingWidget();
+          return const Center(child: LoadingWidget());
         } else if (state is ProductStateProductsRetreived) {
           final products = state.products;
 

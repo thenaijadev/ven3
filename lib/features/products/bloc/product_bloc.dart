@@ -9,6 +9,7 @@ part 'product_state.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc(ProductsRepository repo) : super(ProductStateInitial()) {
     on<ProductEventFetchProducts>((event, emit) async {
+      emit(ProductStateIsLoading());
       final response = await repo.getAllProducts();
       response.fold((l) => emit(ProductStateError(error: l)), (r) {
         emit(ProductStateProductsRetreived(products: r));

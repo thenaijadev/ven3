@@ -24,27 +24,27 @@ class _ShopScreenState extends State<ShopScreen> {
   void initState() {
     final ProductBloc productBloc = context.read<ProductBloc>();
     productBloc.add(ProductEventFetchProducts());
+    setState(() {
+      filterProducts("");
+    });
     super.initState();
   }
 
   final GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
   void filterProducts(String query) {
-    setState(() {
-      if (query.isEmpty) {
-        // If the query is empty, show all categories
-        filteredProducts = List.from(produts);
-      } else {
-        // Otherwise, filter categories that match the query
-        filteredProducts = produts
-            .where((category) =>
-                category.name!.toLowerCase().contains(query.toLowerCase()))
-            .toList();
-      }
-    });
+    if (query.isEmpty) {
+      filteredProducts = List.from(produts);
+    } else {
+      filteredProducts = produts
+          .where((product) =>
+              product.name!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    filterProducts("");
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -76,6 +76,7 @@ class _ShopScreenState extends State<ShopScreen> {
                 return const LoadingWidget();
               } else if (state is ProductStateProductsRetreived) {
                 produts = state.products;
+
                 return Expanded(
                   child: GridView.builder(
                     padding: const EdgeInsets.all(0),
