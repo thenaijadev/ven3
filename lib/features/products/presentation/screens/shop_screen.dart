@@ -4,6 +4,7 @@ import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
 import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
+import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
 
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_item.dart';
 
@@ -17,8 +18,8 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
-  List<String> categories = [];
-  List<String> filteredCategories = [];
+  List<Product> produts = [];
+  List<Product> filteredProducts = [];
   @override
   void initState() {
     final ProductBloc productBloc = context.read<ProductBloc>();
@@ -31,12 +32,12 @@ class _ShopScreenState extends State<ShopScreen> {
     setState(() {
       if (query.isEmpty) {
         // If the query is empty, show all categories
-        filteredCategories = List.from(categories);
+        filteredProducts = List.from(produts);
       } else {
         // Otherwise, filter categories that match the query
-        filteredCategories = categories
+        filteredProducts = produts
             .where((category) =>
-                category.toLowerCase().contains(query.toLowerCase()))
+                category.name!.toLowerCase().contains(query.toLowerCase()))
             .toList();
       }
     });
@@ -71,33 +72,36 @@ class _ShopScreenState extends State<ShopScreen> {
           BlocConsumer<ProductBloc, ProductState>(
             listener: (context, state) {},
             builder: (context, state) {
-              return state is ProductStateIsLoading
-                  ? const LoadingWidget()
-                  : state is ProductStateProductsRetreived
-                      ? Expanded(
-                          child: GridView.builder(
-                            padding: const EdgeInsets.all(0),
-                            gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                                    maxCrossAxisExtent: 200,
-                                    childAspectRatio: 2 / 4,
-                                    crossAxisSpacing: 20,
-                                    mainAxisSpacing: 20),
-                            itemCount: state.products.length,
-                            itemBuilder: (BuildContext context, index) {
-                              return ProductItem(
-                                product: state.products[index],
-                              );
-                            },
-                          ),
-                        )
-                      : const Center(
-                          child: TextWidget(
-                            text: "Unable to get products",
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        );
+              if (state is ProductStateIsLoading) {
+                return const LoadingWidget();
+              } else if (state is ProductStateProductsRetreived) {
+                produts = state.products;
+                return Expanded(
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(0),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 4,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20),
+                    itemCount: filteredProducts.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return ProductItem(
+                        product: filteredProducts[index],
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: TextWidget(
+                    text: "Unable to get products",
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              }
             },
           ),
         ],
