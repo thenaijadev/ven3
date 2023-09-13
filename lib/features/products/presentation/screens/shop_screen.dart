@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
 import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
 
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_item.dart';
@@ -16,11 +17,29 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
+  List<String> categories = [];
+  List<String> filteredCategories = [];
   @override
   void initState() {
     final ProductBloc productBloc = context.read<ProductBloc>();
     productBloc.add(ProductEventFetchProducts());
     super.initState();
+  }
+
+  final GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
+  void filterProducts(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        // If the query is empty, show all categories
+        filteredCategories = List.from(categories);
+      } else {
+        // Otherwise, filter categories that match the query
+        filteredCategories = categories
+            .where((category) =>
+                category.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
   }
 
   @override
@@ -32,14 +51,23 @@ class _ShopScreenState extends State<ShopScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
-            child: TextWidget(
-              text: "All Products",
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
+          const TextWidget(
+            text: "All Products",
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
           ),
+          InputFieldWidget(
+              padding: const EdgeInsets.all(0),
+              label: "",
+              verticalContentPadding: 0,
+              hintText: "Search",
+              onChanged: (val) {
+                filterProducts(val!);
+              },
+              suffixIcon: const Icon(
+                Icons.search,
+              ),
+              textFieldkey: formKey),
           BlocConsumer<ProductBloc, ProductState>(
             listener: (context, state) {},
             builder: (context, state) {
