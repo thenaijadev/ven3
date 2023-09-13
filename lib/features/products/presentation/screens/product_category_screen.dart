@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
 
@@ -55,6 +56,10 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                 itemCount: filteredProducts.length,
                 itemBuilder: (BuildContext context, index) {
                   return ProductItem(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.productDetails,
+                          arguments: filteredProducts[index].id);
+                    },
                     product: filteredProducts[index],
                   );
                 },

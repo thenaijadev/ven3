@@ -31,4 +31,23 @@ class ProductsProvider extends ProductInterface {
       return left(e.toString());
     }
   }
+
+  @override
+  EitherProduct getProductById({required String id}) async {
+    try {
+      final response = await DioClient.instance.getbyId(
+        RoutesAndPaths.getAllProducts,
+      );
+      final Product product = Product.fromJson(response);
+
+      return right(product);
+    } on DioException catch (e) {
+      final errorMessage = DioExceptionClass.fromDioError(e).toString();
+      print(errorMessage);
+      return left(errorMessage);
+    } catch (e) {
+      print(e.toString());
+      return left(e.toString());
+    }
+  }
 }

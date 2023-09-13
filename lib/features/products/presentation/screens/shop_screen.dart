@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
+import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
@@ -44,7 +46,6 @@ class _ShopScreenState extends State<ShopScreen> {
 
   @override
   Widget build(BuildContext context) {
-    filterProducts("");
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -89,17 +90,36 @@ class _ShopScreenState extends State<ShopScreen> {
                     itemCount: filteredProducts.length,
                     itemBuilder: (BuildContext context, index) {
                       return ProductItem(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.productDetails,
+                              arguments: filteredProducts[index].id);
+                        },
                         product: filteredProducts[index],
                       );
                     },
                   ),
                 );
               } else {
-                return const Center(
-                  child: TextWidget(
-                    text: "Unable to get products",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const TextWidget(
+                        text: "Unable to get product categories",
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          final ProductBloc bloc = context.read<ProductBloc>();
+                          bloc.add(ProductEventFetchProducts());
+                        },
+                        child: const Icon(
+                          Icons.refresh,
+                          color: AppColors.orange,
+                        ),
+                      )
+                    ],
                   ),
                 );
               }

@@ -13,4 +13,10 @@ class ProductsRepository {
 
     return response;
   }
+
+  EitherProduct getProductById({required String id}) async {
+    final response = await provider.getProductById(id: id);
+
+    return response;
+  }
 }

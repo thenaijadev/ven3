@@ -68,12 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: const Text('Shop'),
                 activeColor: AppColors.orange),
             BottomNavyBarItem(
-                icon: const Icon(Icons.message),
-                title: const Text('Messages'),
+                icon: const Icon(Icons.favorite),
+                title: const Text('Wish List'),
                 activeColor: AppColors.orange),
             BottomNavyBarItem(
-                icon: const Icon(Icons.settings),
-                title: const Text('Settings'),
+                icon: const Icon(Icons.shopping_cart_outlined),
+                title: const Text('Cart'),
                 activeColor: AppColors.orange),
           ],
         ));

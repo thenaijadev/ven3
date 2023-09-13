@@ -35,6 +35,28 @@ class DioClient {
     }
   }
 
+  Future<Map<String, dynamic>> getbyId(String path,
+      {Map<String, dynamic>? queryParameters,
+      Options? options,
+      CancelToken? cancelToken,
+      ProgressCallback? onReceiveProgress}) async {
+    try {
+      final Response response = await _dio.get(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      }
+      throw "something went wrong";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   ///Post Method
   Future<Map<String, dynamic>> post(String path,
       {data,
