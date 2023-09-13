@@ -2,6 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/main_screen.dart';
+import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             children: const <Widget>[
               MainScreen(),
-              MainScreen(),
+              ShopScreen(),
               MainScreen(),
               MainScreen(),
             ],
@@ -63,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
               activeColor: AppColors.orange,
             ),
             BottomNavyBarItem(
-                icon: const Icon(Icons.people),
-                title: const Text('Users'),
+                icon: const Icon(Icons.shopping_bag_rounded),
+                title: const Text('Shop'),
                 activeColor: AppColors.orange),
             BottomNavyBarItem(
                 icon: const Icon(Icons.message),
