@@ -8,7 +8,8 @@ import 'package:the_food_hub_nsk_nig/features/auth/presentation/pages/registrati
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/screens/cart_screen.dart';
 
 import 'package:the_food_hub_nsk_nig/features/payment/presentation/screens/add_new_card_screen.dart';
-import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/buttom_nav_bar.dart';
+import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/product_category_screen.dart';
+import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/buttom_nav_bar.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -32,6 +33,14 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
         );
+
+      case Routes.categoryProducts:
+        var data = routeSettings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => CategoryProductsScreen(
+            productData: data,
+          ),
+        );
       case Routes.cart:
         return MaterialPageRoute(
           builder: (_) => const CartScreen(),
@@ -45,6 +54,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const PhoneNumberScreen(),
         );
+
       default:
         return MaterialPageRoute(
           builder: (_) => const ErrorScreen(),

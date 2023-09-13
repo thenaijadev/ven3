@@ -10,4 +10,5 @@ class Routes {
   static const String cart = '/cart';
   static const String payment = '/payment';
   static const String verifyPhoneNo = '/verifyPhoneNo';
+  static const String categoryProducts = '/categoryProducts';
 }
