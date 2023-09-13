@@ -19,6 +19,14 @@ class ProductStateProductsRetreived extends ProductState {
   List<Object> get props => [products];
 }
 
+class ProductStateProductRetreived extends ProductState {
+  final Product product;
+
+  const ProductStateProductRetreived({required this.product});
+  @override
+  List<Object> get props => [product];
+}
+
 class ProductStateError extends ProductState {
   final String error;
   const ProductStateError({required this.error});

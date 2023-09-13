@@ -4,7 +4,6 @@ import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
 import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
 
@@ -26,22 +25,24 @@ class _ShopScreenState extends State<ShopScreen> {
   void initState() {
     final ProductBloc productBloc = context.read<ProductBloc>();
     productBloc.add(ProductEventFetchProducts());
-    setState(() {
-      filterProducts("");
-    });
+    // setState(() {
+    //   filterProducts("");
+    // });
     super.initState();
   }
 
   final GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
   void filterProducts(String query) {
-    if (query.isEmpty) {
-      filteredProducts = List.from(produts);
-    } else {
-      filteredProducts = produts
-          .where((product) =>
-              product.name!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
+    setState(() {
+      if (query.isEmpty) {
+        filteredProducts = List.from(produts);
+      } else {
+        filteredProducts = produts
+            .where((product) =>
+                product.name!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
   }
 
   @override
@@ -58,18 +59,21 @@ class _ShopScreenState extends State<ShopScreen> {
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
-          InputFieldWidget(
-              padding: const EdgeInsets.all(0),
-              label: "",
-              verticalContentPadding: 0,
-              hintText: "Search",
-              onChanged: (val) {
-                filterProducts(val!);
-              },
-              suffixIcon: const Icon(
-                Icons.search,
-              ),
-              textFieldkey: formKey),
+          const SizedBox(
+            height: 30,
+          ),
+          // InputFieldWidget(
+          //     padding: const EdgeInsets.all(0),
+          //     label: "",
+          //     verticalContentPadding: 0,
+          //     hintText: "Search",
+          //     onChanged: (val) {
+          //       filterProducts(val!);
+          //     },
+          //     suffixIcon: const Icon(
+          //       Icons.search,
+          //     ),
+          //     textFieldkey: formKey),
           BlocConsumer<ProductBloc, ProductState>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -87,14 +91,14 @@ class _ShopScreenState extends State<ShopScreen> {
                             childAspectRatio: 2 / 4,
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 20),
-                    itemCount: filteredProducts.length,
+                    itemCount: state.products.length,
                     itemBuilder: (BuildContext context, index) {
                       return ProductItem(
                         onTap: () {
                           Navigator.pushNamed(context, Routes.productDetails,
-                              arguments: filteredProducts[index].id);
+                              arguments: state.products[index].id);
                         },
-                        product: filteredProducts[index],
+                        product: state.products[index],
                       );
                     },
                   ),
