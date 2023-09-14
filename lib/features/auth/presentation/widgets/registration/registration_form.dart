@@ -111,27 +111,29 @@ class _SignUpFormState extends State<SignUpForm> {
             const SizedBox(
               height: 20,
             ),
-            BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthStateUserRegistered) {
-                  Navigator.pushReplacementNamed(context, Routes.home);
-                } else if (state is AuthStateRegistrationError) {
-                  InfoSnackBar.showErrorSnackBar(context, state.error);
-                }
-              },
-              builder: (context, state) {
-                return state is AuthStateIsRegisteringwithGoogle
-                    ? const Flexible(child: LoadingWidget())
-                    : OAuthButton(
-                        image: "google",
-                        label: "Google",
-                        onTap: () async {
-                          authBloc.add(AuthEventRegisterWithGoogle());
-                        },
-                        verticalPadding: 0,
-                      );
-              },
-            )
+            Theme.of(context).platform == TargetPlatform.iOS
+                ? BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthStateUserRegistered) {
+                        Navigator.pushReplacementNamed(context, Routes.home);
+                      } else if (state is AuthStateRegistrationError) {
+                        InfoSnackBar.showErrorSnackBar(context, state.error);
+                      }
+                    },
+                    builder: (context, state) {
+                      return state is AuthStateIsRegisteringwithGoogle
+                          ? const Flexible(child: LoadingWidget())
+                          : OAuthButton(
+                              image: "google",
+                              label: "Google",
+                              onTap: () async {
+                                authBloc.add(AuthEventRegisterWithGoogle());
+                              },
+                              verticalPadding: 0,
+                            );
+                    },
+                  )
+                : const SizedBox()
           ],
         ),
       ),
