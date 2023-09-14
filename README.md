@@ -45,6 +45,7 @@ Flutter will build and run the app on your connected Android or iOS device or em
 
 Please ensure you have a mobile device connected to your computer. Alternatively , you can set up an Android emulator or an IOS simulator on you local machine. Note that you can only run a Flutter application on IOS using a computer running macOS.
 
+Please also note that all commands are to be entered using terminal. VsCode has an integrated terminal but you can also use any other terminal of your choice but be mindful of the directory you are in.
 
 
 
