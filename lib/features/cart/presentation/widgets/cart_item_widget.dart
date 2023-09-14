@@ -26,6 +26,7 @@ class _CartItemWidgetState extends State<CartItemWidget>
     with SingleTickerProviderStateMixin {
   bool showDetails = false;
   late AnimationController _animationController;
+  // ignore: unused_field
   late Animation<Offset> _slideAnimation;
 
   @override

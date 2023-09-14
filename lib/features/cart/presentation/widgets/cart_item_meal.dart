@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity_row.dart';
 
 class CartItemMeal extends StatefulWidget {
   const CartItemMeal(
