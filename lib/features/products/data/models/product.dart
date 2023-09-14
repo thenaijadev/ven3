@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Product {
   String? id;
   String? object;
@@ -9,7 +10,8 @@ class Product {
   String? name;
   String? price;
   int? quantity;
-
+  int? amount;
+  bool? isFavourite;
   String? size;
 
   Product(
@@ -17,11 +19,13 @@ class Product {
       this.object,
       this.brand,
       this.category,
+      this.isFavourite = false,
       this.code,
       this.description,
       this.image,
       this.name,
       this.price,
+      this.amount,
       this.quantity,
       this.size});
 
@@ -58,6 +62,38 @@ class Product {
     data['quantity'] = quantity;
     data['size'] = size;
     return data;
+  }
+
+  Product copyWith({
+    String? id,
+    String? object,
+    Brand? brand,
+    Brand? category,
+    String? code,
+    String? description,
+    String? image,
+    String? name,
+    String? price,
+    int? quantity,
+    int? amount,
+    bool? isFavourite,
+    String? size,
+  }) {
+    return Product(
+      id: id ?? this.id,
+      object: object ?? this.object,
+      brand: brand ?? this.brand,
+      category: category ?? this.category,
+      code: code ?? this.code,
+      description: description ?? this.description,
+      image: image ?? this.image,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      quantity: quantity ?? this.quantity,
+      amount: amount ?? this.amount,
+      isFavourite: isFavourite ?? this.isFavourite,
+      size: size ?? this.size,
+    );
   }
 }
 
