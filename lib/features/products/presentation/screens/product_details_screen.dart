@@ -158,12 +158,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   TextWidget(
                                     text: state.product.name!,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
-                                  )
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
                                 ],
                               ),
                               TextWidget(
@@ -171,6 +175,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                 fontSize: 14,
                                 color: const Color.fromARGB(194, 225, 86, 0),
                               ),
+                              state.product.quantity == 0
+                                  ? const Flexible(
+                                      child: TextWidget(
+                                        text: "Out of sotck",
+                                        fontSize: 14,
+                                        color: Color.fromARGB(194, 63, 58, 54),
+                                      ),
+                                    )
+                                  : TextWidget(
+                                      text: "${state.product.quantity} left",
+                                      fontSize: 16,
+                                      color:
+                                          const Color.fromARGB(194, 225, 86, 0),
+                                    ),
                               const SizedBox(
                                 height: 10,
                               ),
