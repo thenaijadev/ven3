@@ -15,11 +15,11 @@ class HeaderWidget extends StatelessWidget {
         ),
         TextWidget(
           text: "Welcome to",
-          fontSize: 53,
+          fontSize: 50,
           fontWeight: FontWeight.w700,
         ),
         TextWidget(
-          text: "Food hub",
+          text: "E-Shop",
           fontSize: 53,
           color: AppColors.orange,
           fontWeight: FontWeight.w700,

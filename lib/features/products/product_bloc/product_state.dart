@@ -21,10 +21,11 @@ class ProductStateProductsRetreived extends ProductState {
 
 class ProductStateProductRetreived extends ProductState {
   final Product product;
-
-  const ProductStateProductRetreived({required this.product});
+  final List<Product> products;
+  const ProductStateProductRetreived(
+      {required this.products, required this.product});
   @override
-  List<Object> get props => [product];
+  List<Object> get props => [product, products];
 }
 
 class ProductStateError extends ProductState {

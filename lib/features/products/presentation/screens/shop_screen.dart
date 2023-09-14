@@ -4,10 +4,10 @@ import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_item.dart';
+import 'package:the_food_hub_nsk_nig/features/products/product_bloc/product_bloc.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({
@@ -28,8 +28,13 @@ class _ShopScreenState extends State<ShopScreen> {
     // setState(() {
     //   filterProducts("");
     // });
-    print("hi");
+
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant ShopScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   final GlobalKey<FormFieldState> formKey = GlobalKey<FormFieldState>();
@@ -96,8 +101,39 @@ class _ShopScreenState extends State<ShopScreen> {
                     itemBuilder: (BuildContext context, index) {
                       return ProductItem(
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.productDetails,
-                              arguments: state.products[index].id);
+                          var test = Navigator.pushNamed(
+                              context, Routes.productDetails, arguments: {
+                            "product": state.products[index].id,
+                            "products": state.products
+                          });
+
+                          print(test);
+                        },
+                        product: state.products[index],
+                      );
+                    },
+                  ),
+                );
+              }
+              if (state is ProductStateProductRetreived) {
+                return Expanded(
+                  child: GridView.builder(
+                    padding: const EdgeInsets.all(0),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 2 / 4,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20),
+                    itemCount: state.products.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return ProductItem(
+                        onTap: () {
+                          var test = Navigator.pushNamed(
+                              context, Routes.productDetails, arguments: {
+                            "product": state.products[index].id,
+                            "products": state.products
+                          });
                         },
                         product: state.products[index],
                       );

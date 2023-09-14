@@ -7,7 +7,7 @@ class OAuthButton extends StatelessWidget {
       required this.image,
       required this.label,
       required this.onTap,
-      this.verticalPadding = 15});
+      this.verticalPadding = 12});
   final String image;
   final String label;
   final VoidCallback onTap;
@@ -18,9 +18,8 @@ class OAuthButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: verticalPadding,
-            ),
+            padding:
+                EdgeInsets.symmetric(vertical: verticalPadding, horizontal: 25),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(100)),
             child: Row(

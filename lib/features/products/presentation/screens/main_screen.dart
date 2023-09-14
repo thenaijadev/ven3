@@ -5,8 +5,8 @@ import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/text_field.dart';
-import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_category_item.dart';
+import 'package:the_food_hub_nsk_nig/features/products/product_bloc/product_bloc.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

@@ -10,9 +10,7 @@ class SignInButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 15,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           decoration: BoxDecoration(
               border: Border.all(color: AppColors.orange),
               color: Colors.transparent,

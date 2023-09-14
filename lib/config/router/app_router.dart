@@ -56,11 +56,11 @@ class AppRouter {
           builder: (_) => const PhoneNumberScreen(),
         );
       case Routes.productDetails:
-        var data = routeSettings.arguments as String;
+        var data = routeSettings.arguments as Map<String, dynamic>;
 
         return MaterialPageRoute(
           builder: (_) => ProductDetailsScreen(
-            id: data,
+            data: data,
           ),
         );
       default:

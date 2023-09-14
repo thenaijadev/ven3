@@ -4,12 +4,12 @@ import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity_row.dart';
-import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/add_to_cart_button.dart';
+import 'package:the_food_hub_nsk_nig/features/products/product_bloc/product_bloc.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key, required this.id});
-  final String id;
+  const ProductDetailsScreen({super.key, required this.data});
+  final Map<String, dynamic> data;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -29,7 +29,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
       vsync: this,
     );
     final ProductBloc bloc = context.read<ProductBloc>();
-    bloc.add(ProductEventFetchProduct(id: widget.id));
+    bloc.add(ProductEventFetchProduct(
+        id: widget.data["product"], products: widget.data["products"]));
   }
 
   @override
@@ -51,14 +52,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    final ProductBloc bloc = context.read<ProductBloc>();
-    bloc.add(ProductEventFetchProduct(id: widget.id));
     return Scaffold(
         backgroundColor: Colors.white,
         body: BlocConsumer<ProductBloc, ProductState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             if (state is ProductStateIsLoading) {
               return const LoadingWidget();
@@ -66,7 +63,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
               return Stack(
                 children: [
                   Container(
-                    height: 400,
+                    height: MediaQuery.of(context).size.height * .4,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20).copyWith(
@@ -125,10 +122,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        height: 500,
+                        height: MediaQuery.of(context).size.height * .52,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(46, 254, 115, 76),
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30).copyWith(
+                              bottomRight: Radius.zero,
+                              bottomLeft: Radius.zero),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -151,12 +150,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                 color: const Color.fromARGB(194, 225, 86, 0),
                               ),
                               const SizedBox(
-                                height: 30,
+                                height: 10,
+                              ),
+                              TextWidget(
+                                text: "₦${state.product.price!}",
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.orange,
+                              ),
+                              const SizedBox(
+                                height: 20,
                               ),
                               Row(
                                 children: [
                                   const SizedBox(
-                                    width: 20,
+                                    width: 10,
                                   ),
                                   Transform.scale(
                                     scale: 1.3,
@@ -170,26 +178,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                               const SizedBox(
                                 height: 20,
                               ),
-                              TextWidget(
-                                text: state.product.description!,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromARGB(194, 0, 0, 0),
+                              SizedBox(
+                                height: 110,
+                                child: ListView(
+                                    padding: const EdgeInsets.all(0),
+                                    children: [
+                                      TextWidget(
+                                        text: state.product.description!,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color:
+                                            const Color.fromARGB(194, 0, 0, 0),
+                                      ),
+                                    ]),
                               ),
                               const SizedBox(
-                                height: 30,
+                                height: 10,
                               ),
-                              TextWidget(
-                                text: "₦${state.product.price!}",
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.orange,
+                              const Expanded(
+                                child: SizedBox(
+                                  height: 10,
+                                ),
                               ),
-                              const Spacer(),
                               AddToCartButton(
                                 onTap: () {},
                               ),
-                              const Spacer(),
                             ],
                           ),
                         ),
@@ -211,7 +224,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                     GestureDetector(
                       onTap: () {
                         final ProductBloc bloc = context.read<ProductBloc>();
-                        bloc.add(ProductEventFetchProduct(id: widget.id));
+                        bloc.add(ProductEventFetchProduct(
+                            id: widget.data["product"],
+                            products: widget.data["products"]));
                       },
                       child: const Icon(
                         Icons.refresh,

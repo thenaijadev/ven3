@@ -19,8 +19,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<ProductEventFetchProduct>((event, emit) async {
       emit(ProductStateIsLoading());
       final response = await repo.getProductById(id: event.id);
+
       response.fold((l) => emit(ProductStateError(error: l)), (r) {
-        emit(ProductStateProductRetreived(product: r));
+        emit(
+            ProductStateProductRetreived(product: r, products: event.products));
       });
     });
   }
