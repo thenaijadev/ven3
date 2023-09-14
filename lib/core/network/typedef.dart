@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
+import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
 typedef EitherMap = Future<Either<String, Map<String, dynamic>>>;
 typedef EitherProductList = Future<Either<String, List<Product>>>;

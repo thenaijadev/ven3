@@ -5,7 +5,7 @@ import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/products/bloc/product_bloc.dart';
-import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
+import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_item.dart';
 
@@ -28,6 +28,7 @@ class _ShopScreenState extends State<ShopScreen> {
     // setState(() {
     //   filterProducts("");
     // });
+    print("hi");
     super.initState();
   }
 
@@ -109,7 +110,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const TextWidget(
-                        text: "Unable to get product categories",
+                        text: "Unable to get products.",
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),

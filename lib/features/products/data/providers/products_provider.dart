@@ -5,7 +5,7 @@ import 'package:the_food_hub_nsk_nig/core/network/dio_client.dart';
 import 'package:the_food_hub_nsk_nig/core/network/dio_exception.dart';
 import 'package:the_food_hub_nsk_nig/core/network/typedef.dart';
 import 'package:the_food_hub_nsk_nig/features/products/data/interfaces/products_interface.dart';
-import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
+import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
 class ProductsProvider extends ProductInterface {
   @override
@@ -36,14 +36,14 @@ class ProductsProvider extends ProductInterface {
   EitherProduct getProductById({required String id}) async {
     try {
       final response = await DioClient.instance.getbyId(
-        RoutesAndPaths.getAllProducts,
+        "${RoutesAndPaths.getProduct}/$id",
       );
       final Product product = Product.fromJson(response);
 
       return right(product);
     } on DioException catch (e) {
       final errorMessage = DioExceptionClass.fromDioError(e).toString();
-      print(errorMessage);
+      print({"This": errorMessage});
       return left(errorMessage);
     } catch (e) {
       print(e.toString());

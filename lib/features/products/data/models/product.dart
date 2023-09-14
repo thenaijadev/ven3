@@ -9,6 +9,7 @@ class Product {
   String? name;
   String? price;
   int? quantity;
+
   String? size;
 
   Product(

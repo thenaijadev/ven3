@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
-import 'package:the_food_hub_nsk_nig/features/products/models/product.dart';
+import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/product_item.dart';
 
