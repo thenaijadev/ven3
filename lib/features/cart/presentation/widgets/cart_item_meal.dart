@@ -15,7 +15,7 @@ class CartItemMeal extends StatefulWidget {
   final VoidCallback onDelete;
   final IconData showDetailsIcon;
   final String name;
-  final int price;
+  final double price;
   final String image;
 
   @override
@@ -46,11 +46,11 @@ class _CartItemMealState extends State<CartItemMeal> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                        image: AssetImage(widget.image), fit: BoxFit.cover),
+                        image: NetworkImage(widget.image), fit: BoxFit.cover),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.only(left: 0.0, top: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -59,10 +59,13 @@ class _CartItemMealState extends State<CartItemMeal> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextWidget(
-                              text: widget.name,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                            Flexible(
+                              child: TextWidget(
+                                text: widget.name,
+                                fontSize: 18,
+                                overflow: TextOverflow.ellipsis,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const SizedBox(
                               width: 20,
@@ -94,19 +97,6 @@ class _CartItemMealState extends State<CartItemMeal> {
                               //     onIncrease: () {}, onReduce: () {}, quantity: 4)
                             ],
                           )),
-                      Row(
-                        children: [
-                          const SizedBox(
-                              width: 100,
-                              child: TextWidget(
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 14,
-                                text: "Coconut rice, Fried Chiken, Coke,",
-                                color: AppColors.detailsGrey,
-                              )),
-                          Icon(widget.showDetailsIcon)
-                        ],
-                      )
                     ],
                   ),
                 )

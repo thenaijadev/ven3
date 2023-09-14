@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/presentation/screens/cart_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/main_screen.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/screens/shop_screen.dart';
 
@@ -42,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: const <Widget>[
               MainScreen(),
               ShopScreen(),
-              MainScreen(),
-              MainScreen(),
+              CartScreen(),
             ],
           ),
         ),
@@ -67,10 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.shopping_bag_rounded),
                 title: const Text('Shop'),
                 activeColor: AppColors.orange),
-            BottomNavyBarItem(
-                icon: const Icon(Icons.favorite),
-                title: const Text('Wish List'),
-                activeColor: AppColors.orange),
+            // BottomNavyBarItem(
+            //     icon: const Icon(Icons.favorite),
+            //     title: const Text('Wish List'),
+            //     activeColor: AppColors.orange),
             BottomNavyBarItem(
                 icon: const Icon(Icons.shopping_cart_outlined),
                 title: const Text('Cart'),

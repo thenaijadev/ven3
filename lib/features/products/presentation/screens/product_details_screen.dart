@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/loading_widget.dart';
+import 'package:the_food_hub_nsk_nig/core/widgets/snackbar.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity_row.dart';
 import 'package:the_food_hub_nsk_nig/features/products/presentation/widgets/add_to_cart_button.dart';
 import 'package:the_food_hub_nsk_nig/features/products/product_bloc/product_bloc.dart';
@@ -49,6 +51,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
       }
     });
   }
+
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -169,9 +173,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                   Transform.scale(
                                     scale: 1.3,
                                     child: QuantityRow(
-                                        onReduce: () {},
-                                        onIncrease: () {},
-                                        quantity: 0),
+                                        onReduce: () {
+                                          setState(() {
+                                            if (quantity > 0) {
+                                              quantity--;
+                                            }
+                                          });
+                                        },
+                                        onIncrease: () {
+                                          setState(() {
+                                            quantity++;
+                                          });
+                                        },
+                                        quantity: quantity),
                                   ),
                                 ],
                               ),
@@ -200,8 +214,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                   height: 10,
                                 ),
                               ),
-                              AddToCartButton(
-                                onTap: () {},
+                              BlocListener<CartBloc, CartState>(
+                                listener: (context, state) {
+                                  if (state is CartStateItemAdded) {
+                                    InfoSnackBar.showSuccessSnackBar(
+                                        context, "Product added to cart");
+                                  }
+                                },
+                                child: AddToCartButton(
+                                  onTap: () {
+                                    final product = state.product
+                                        .copyWith(amount: quantity);
+                                    final CartBloc bloc =
+                                        context.read<CartBloc>();
+                                    bloc.add(
+                                        CartEventAddProduct(product: product));
+                                  },
+                                ),
                               ),
                             ],
                           ),

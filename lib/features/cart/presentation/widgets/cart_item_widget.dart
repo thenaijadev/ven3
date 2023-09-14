@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_meal.dart';
-import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/meal_details.dart';
 
 class CartItemWidget extends StatefulWidget {
   const CartItemWidget(
@@ -15,7 +14,7 @@ class CartItemWidget extends StatefulWidget {
   final VoidCallback onDelete;
   final String name;
   final String image;
-  final int price;
+  final double price;
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
 }
@@ -72,13 +71,6 @@ class _CartItemWidgetState extends State<CartItemWidget>
               ? Icons.keyboard_arrow_up_rounded
               : Icons.keyboard_arrow_down_rounded,
           onDelete: widget.onDelete,
-        ),
-        SlideTransition(
-          position: _slideAnimation,
-          child: Visibility(
-            visible: showDetails,
-            child: MealDetails(mealItemIndex: widget.index),
-          ),
         ),
       ],
     );

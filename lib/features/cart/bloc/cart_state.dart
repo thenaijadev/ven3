@@ -10,20 +10,21 @@ final class CartInitial extends CartState {
 }
 
 class CartStateItemAdded extends CartState {
-  final List<Meal> meals;
+  final List<Product> products;
 
-  CartStateItemAdded({required this.meals});
-
-  CartStateItemAdded copyWith({
-    List<Meal>? meals,
-  }) {
-    return CartStateItemAdded(
-      meals: meals ?? this.meals,
-    );
-  }
+  CartStateItemAdded({required this.products});
 
   @override
-  List<Object?> get props => [meals];
+  List<Object?> get props => [products];
+}
+
+class CartStateItemRemoved extends CartState {
+  final List<Product> products;
+
+  CartStateItemRemoved({required this.products});
+
+  @override
+  List<Object?> get props => [products];
 }
 
 class CartItemIsAdding extends CartState {

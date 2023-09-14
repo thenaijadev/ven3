@@ -3,14 +3,14 @@ part of 'cart_bloc.dart';
 @immutable
 sealed class CartEvent {}
 
-class CartEventAddCartMeal extends CartEvent {
-  final Meal meal;
-  CartEventAddCartMeal({required this.meal});
+class CartEventAddProduct extends CartEvent {
+  final Product product;
+  CartEventAddProduct({required this.product});
 }
 
 class CartEventRemoveCartItem extends CartEvent {
-  final Meal meal;
-  CartEventRemoveCartItem({required this.meal});
+  final Product product;
+  CartEventRemoveCartItem({required this.product});
 }
 
 class CartEventMealAddItemQuantity extends CartEvent {

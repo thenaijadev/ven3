@@ -58,7 +58,10 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                   return ProductItem(
                     onTap: () {
                       Navigator.pushNamed(context, Routes.productDetails,
-                          arguments: filteredProducts[index].id);
+                          arguments: {
+                            "product": filteredProducts[index].id,
+                            "products": widget.productData["products"]
+                          });
                     },
                     product: filteredProducts[index],
                   );

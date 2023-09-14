@@ -12,8 +12,8 @@ class PriceSummary extends StatelessWidget {
       builder: (context, state) {
         int totalPrice = 0;
         if (state is CartStateItemAdded) {
-          for (var element in state.meals) {
-            totalPrice = element.price + totalPrice;
+          for (var element in state.products) {
+            totalPrice = double.parse(element.price!).round() + totalPrice;
           }
         }
         final deliveryFee = totalPrice * .1;

@@ -24,7 +24,7 @@ class InfoSnackBar {
           ],
         ),
       ),
-      margin: const EdgeInsets.only(left: 18, right: 18, bottom: 20),
+      margin: const EdgeInsets.only(left: 18, right: 18, bottom: 70),
       elevation: 2,
     );
   }

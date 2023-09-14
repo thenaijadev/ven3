@@ -4,7 +4,6 @@ import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/auth/presentation/widgets/home/auth_button.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/bloc/cart_bloc.dart';
-import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/add_new_meal.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/price_summary.dart';
 
@@ -25,78 +24,47 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final CartBloc cartBloc = context.read<CartBloc>();
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const TextWidget(
-          text: "Cart",
-          fontSize: 18,
-        ),
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-        // leading: GestureDetector(
-        //   onTap: () {
-        //     Navigator.pop(context);
-        //   },
-        //   child: Transform.translate(
-        //     offset: const Offset(20, 0),
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(10.0),
-        //       child: Material(
-        //         color: Colors.white,
-        //         elevation: 2,
-        //         borderRadius: BorderRadius.circular(10),
-        //         child: const Icon(
-        //           Icons.chevron_left,
-        //           color: Colors.black,
-        //           size: 20,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
-      ),
-      body: Column(
-        children: [
-          AddNewMealButton(
-            onTap: () {
-              Navigator.pushNamed(context, Routes.home);
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .50,
+          child: BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return state is CartStateItemAdded
+                  ? state.products.isEmpty
+                      ? const Center(child: TextWidget(text: "Empty"))
+                      : ListView.builder(
+                          itemCount: state.products.length,
+                          itemBuilder: (context, index) {
+                            return CartItemWidget(
+                              image: state.products[index].image!,
+                              name: state.products[index].name!,
+                              price: double.parse(state.products[index].price!),
+                              index: index,
+                              onDelete: () {
+                                cartBloc.add(CartEventRemoveCartItem(
+                                    product: state.products[index]));
+                              },
+                            );
+                          },
+                        )
+                  : const SizedBox();
             },
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .50,
-            child: BlocBuilder<CartBloc, CartState>(
-              builder: (context, state) {
-                return state is CartStateItemAdded
-                    ? state.meals.isEmpty
-                        ? const Center(child: TextWidget(text: "Empty"))
-                        : ListView.builder(
-                            itemCount: state.meals.length,
-                            itemBuilder: (context, index) {
-                              return CartItemWidget(
-                                image: state.meals[index].meals[0].image,
-                                name: state.meals[index].meals[0].name,
-                                price: state.meals[index].price,
-                                index: index,
-                                onDelete: () {
-                                  cartBloc.add(CartEventRemoveCartItem(
-                                      meal: state.meals[index]));
-                                },
-                              );
-                            },
-                          )
-                    : const SizedBox();
-              },
-            ),
-          ),
-          const Flexible(child: PriceSummary()),
-          PrimaryOrangeButton(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.payment);
-              },
-              label: "Checkout")
-        ],
-      ),
+        ),
+        const Flexible(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            PriceSummary(),
+          ],
+        )),
+        PrimaryOrangeButton(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.payment);
+            },
+            label: "Checkout")
+      ],
     );
   }
 }

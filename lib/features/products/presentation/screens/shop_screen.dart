@@ -129,11 +129,11 @@ class _ShopScreenState extends State<ShopScreen> {
                     itemBuilder: (BuildContext context, index) {
                       return ProductItem(
                         onTap: () {
-                          var test = Navigator.pushNamed(
-                              context, Routes.productDetails, arguments: {
-                            "product": state.products[index].id,
-                            "products": state.products
-                          });
+                          Navigator.pushNamed(context, Routes.productDetails,
+                              arguments: {
+                                "product": state.products[index].id,
+                                "products": state.products
+                              });
                         },
                         product: state.products[index],
                       );
