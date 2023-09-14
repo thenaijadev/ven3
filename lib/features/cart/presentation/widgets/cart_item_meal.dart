@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
+import 'package:the_food_hub_nsk_nig/features/cart/presentation/widgets/quantity_row.dart';
 
 class CartItemMeal extends StatefulWidget {
   const CartItemMeal(
@@ -10,6 +11,7 @@ class CartItemMeal extends StatefulWidget {
       required this.showDetailsIcon,
       required this.name,
       required this.image,
+      required this.amount,
       required this.price});
   final VoidCallback onShowDetails;
   final VoidCallback onDelete;
@@ -17,6 +19,7 @@ class CartItemMeal extends StatefulWidget {
   final String name;
   final double price;
   final String image;
+  final String amount;
 
   @override
   State<CartItemMeal> createState() => _CartItemMealState();
@@ -86,15 +89,13 @@ class _CartItemMealState extends State<CartItemMeal> {
                           child: Row(
                             children: [
                               TextWidget(
-                                text: "₦${widget.price}",
+                                text: "₦${widget.price} x ${widget.amount}",
                                 color: AppColors.orange,
                                 fontWeight: FontWeight.bold,
                               ),
                               const SizedBox(
                                 width: 20,
                               ),
-                              // QuantityRow(
-                              //     onIncrease: () {}, onReduce: () {}, quantity: 4)
                             ],
                           )),
                     ],

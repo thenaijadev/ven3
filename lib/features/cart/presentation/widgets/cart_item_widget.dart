@@ -7,6 +7,7 @@ class CartItemWidget extends StatefulWidget {
       required this.onDelete,
       required this.index,
       required this.name,
+      required this.amount,
       required this.image,
       required this.price})
       : super(key: key);
@@ -14,6 +15,8 @@ class CartItemWidget extends StatefulWidget {
   final VoidCallback onDelete;
   final String name;
   final String image;
+  final String amount;
+
   final double price;
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
@@ -66,6 +69,7 @@ class _CartItemWidgetState extends State<CartItemWidget>
           image: widget.image,
           price: widget.price,
           name: widget.name,
+          amount: widget.amount,
           onShowDetails: _toggleDetails,
           showDetailsIcon: showDetails
               ? Icons.keyboard_arrow_up_rounded

@@ -13,7 +13,9 @@ class PriceSummary extends StatelessWidget {
         int totalPrice = 0;
         if (state is CartStateItemAdded) {
           for (var element in state.products) {
-            totalPrice = double.parse(element.price!).round() + totalPrice;
+            totalPrice = double.parse(element.price!).round() *
+                    int.parse(element.amount.toString()) +
+                totalPrice;
           }
         }
         final deliveryFee = totalPrice * .1;
@@ -22,15 +24,15 @@ class PriceSummary extends StatelessWidget {
           children: [
             PriceDataRow(
               title: "Subtotal:",
-              amount: "$totalPrice",
+              amount: "${totalPrice.round()}",
             ),
             PriceDataRow(
               title: "Delivery:",
-              amount: "$deliveryFee",
+              amount: "${deliveryFee.round()}",
             ),
             PriceDataRow(
               title: "Total:",
-              amount: "${totalPrice + deliveryFee}",
+              amount: "${(totalPrice + deliveryFee).round()}",
             ),
           ],
         );

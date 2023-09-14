@@ -157,7 +157,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                 height: 10,
                               ),
                               TextWidget(
-                                text: "₦${state.product.price!}",
+                                text:
+                                    "₦${(double.parse(state.product.price!) * quantity).round()}",
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.orange,

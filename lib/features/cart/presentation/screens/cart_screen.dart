@@ -37,6 +37,7 @@ class _CartScreenState extends State<CartScreen> {
                           itemCount: state.products.length,
                           itemBuilder: (context, index) {
                             return CartItemWidget(
+                              amount: state.products[index].amount.toString(),
                               image: state.products[index].image!,
                               name: state.products[index].name!,
                               price: double.parse(state.products[index].price!),
