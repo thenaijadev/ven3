@@ -25,6 +25,7 @@ class _CartScreenState extends State<CartScreen> {
     final CartBloc cartBloc = context.read<CartBloc>();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * .50,

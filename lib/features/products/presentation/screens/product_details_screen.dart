@@ -107,17 +107,35 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                               scale: _controller
                                   .drive(CurveTween(curve: Curves.easeInOut)),
                               child: IconButton(
-                                icon: Icon(
-                                  isFavorite
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  color: AppColors.orange,
-                                  size: 32.0,
+                                icon: Row(
+                                  children: [
+                                    Icon(
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: AppColors.orange,
+                                      size: 32.0,
+                                    ),
+                                  ],
                                 ),
                                 onPressed: toggleFavorite,
                               ),
                             ),
-                          )
+                          ),
+                          Positioned(
+                            left: 20,
+                            top: 60,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(
+                                Icons.chevron_left,
+                                size: 40,
+                                color: AppColors.orange,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

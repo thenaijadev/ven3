@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_food_hub_nsk_nig/config/router/routes.dart';
+import 'package:the_food_hub_nsk_nig/core/constants/app_colors.dart';
 import 'package:the_food_hub_nsk_nig/core/widgets/text_widget.dart';
 import 'package:the_food_hub_nsk_nig/features/products/data/models/product.dart';
 
@@ -38,11 +39,26 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextWidget(
-                text: "${widget.productData["category"]}",
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.chevron_left,
+                      size: 40,
+                      color: AppColors.orange,
+                    ),
+                  ),
+                  TextWidget(
+                    text: "${widget.productData["category"]}",
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
               ),
             ),
             Expanded(
