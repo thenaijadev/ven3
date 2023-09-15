@@ -230,7 +230,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                                 height: 20,
                               ),
                               SizedBox(
-                                height: 110,
+                                height: 100,
                                 child: ListView(
                                     padding: const EdgeInsets.all(0),
                                     children: [
