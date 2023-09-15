@@ -57,7 +57,7 @@ class _CartItemMealState extends State<CartItemMeal> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 200,
+                        width: 185,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -70,7 +70,7 @@ class _CartItemMealState extends State<CartItemMeal> {
                               ),
                             ),
                             const SizedBox(
-                              width: 20,
+                              width: 10,
                             ),
                             GestureDetector(
                               onTap: widget.onDelete,
